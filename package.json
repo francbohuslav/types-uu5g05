@@ -5,13 +5,10 @@
     "@types/node": "*",
     "@types/react": "*"
   },
-  "deprecated": false,
   "description": "Types for uu5g05",
-  "license": "MIT",
   "main": "",
   "name": "types-uu5g05",
   "scripts": {},
-  "typeScriptVersion": "3.9",
   "types": "index.d.ts",
-  "version": "2.10.0"
+  "version": "1.0.0"
 }
