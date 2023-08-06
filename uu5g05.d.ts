@@ -1,27 +1,55 @@
 declare module "uu5g05" {
-  function createVisualComponent<Props extends UU5.TProps>(definition: UU5.TComponentDefinition<Props>): UU5.TComponent<Props>;
-  function createVisualComponentWithRef<Props extends UU5.TProps, Interface>(
-    definition: UU5.TComponentDefinitionWithRef<Props, Interface>
-  ): UU5.TComponent<Props & { ref?: React.Ref<Interface> }>;
+  function createComponent<Props extends Uu5.TProps>(
+    definition: Uu5.TComponentDefinition<Props>
+  ): Uu5.TComponent<Props>;
+
+  function createVisualComponent<Props extends Uu5.TProps>(
+    definition: Uu5.TComponentDefinition<Props>
+  ): Uu5.TComponent<Props>;
+
+  function createVisualComponentWithRef<Props extends Uu5.TProps, Interface>(
+    definition: Uu5.TComponentDefinitionWithRef<Props, Interface>
+  ): Uu5.TComponent<Props & { ref?: React.Ref<Interface> }>;
 
   function useRef<T>(initial?: T): React.MutableRefObject<T>;
+
   function useState<T>(initial: T | (() => T)): [T, (newValue: T | ((prev: T) => T)) => void];
+
   function useMemo<T>(method: () => T, dep?: any[]): T;
+
   function useEffect(effect: React.EffectCallback, deps?: any[]): void;
+
   function useCallback<T extends Function>(callback: T, deps?: any[]): T;
+
   function useImperativeHandle<T>(ref: React.Ref<T>, init: () => T, deps?: any[]): void;
-  function useDataObject<T>(options: { handlerMap: Record<string, any>; skipInitialLoad?: boolean }): UU5.TUseDataObject$Return<T>;
-  function useDataList<T>(options: { handlerMap: Record<string, any>; skipInitialLoad?: boolean }): UU5.TUseDataList$Return<T>;
+
+  function useDataObject<T>(
+    options: {
+      handlerMap: Record<string, any>;
+      skipInitialLoad?: boolean;
+      initialDtoIn?: any;
+    },
+    dependencies?: any[]
+  ): Uu5.TUseDataObject$Return<T>;
+
+  function useDataList<T>(options: {
+    handlerMap: Record<string, any>;
+    pageSize?: number;
+    itemIdentifier?: string | string[];
+    itemHandlerMap?: Record<string, any>;
+    skipInitialLoad?: boolean;
+  }): Uu5.TUseDataList$Return<T>;
+
   function useLsi<T>(lsi: (lang: string) => Promise<T>, path: string[]): T;
   function useLsiValues<T>(lsiStruct: T): Record<keyof T, string>;
   function useLanguage(): [string];
   function useContext<T>(context: React.Context<T>): T;
-  function useContentSizeValue<T>(map: Partial<Record<UU5.TSize, T>>): T;
-  function useElementSize<T>(): UU5.TElementSize<T>;
-  function useSession(): UU5.ISession;
-  function useTimezone(): any;
+  function useContentSizeValue<T>(map: Partial<Record<Uu5.TSize, T>>): T;
+  function useElementSize<T>(): Uu5.TElementSize<T>;
+  function useSession(): Uu5.ISession;
+  function useTimeZone(): any;
 
-  const PropTypes: UU5.TPropTypes;
+  const PropTypes: Uu5.TPropTypes;
 
   const Fragment: any;
   const Content: any;
@@ -30,8 +58,17 @@ declare module "uu5g05" {
       fallback: (params: { error: Error }) => React.ReactNode;
     }>
   >;
-  const BackgroundProvider: React.FC<React.PropsWithChildren<{ background: "light" | "dark" }>>;
-  const Lsi: React.FC<React.PropsWithChildren<{ lsi: UU5.TLsi | string }>>;
+  const BackgroundProvider: React.FC<
+    React.PropsWithChildren<{
+      background: "light" | "dark";
+    }>
+  >;
+  const Lsi: Uu5.TComponent<
+    Uu5.TDefaultProps<{
+      lsi: Uu5.TLsi | string;
+      params?: any[] | Record<string, any>;
+    }>
+  >;
 
   const Environment: {
     appBaseUri: any;
@@ -46,11 +83,11 @@ declare module "uu5g05" {
 
   namespace Utils {
     namespace VisualComponent {
-      function getAttrs(props: UU5.TProps, mainClass?: string): any;
+      function getAttrs(props: Uu5.TProps, mainClass?: string): any;
     }
 
     namespace LoggerFactory {
-      function get(name: string): UU5.TLogger;
+      function get(name: string): Uu5.TLogger;
     }
 
     namespace String {
@@ -59,12 +96,12 @@ declare module "uu5g05" {
     }
 
     namespace Lsi {
-      function getMessage(lsi: UU5.TLsi, langauge?: string): string;
-      function setDefaultLsi(librart: string, lsi: any): void;
+      function getMessage(lsi: Uu5.TLsi, langauge: string): string;
+      function setDefaultLsi(library: string, lsi: any): void;
     }
 
     namespace NestingLevel {
-      function getNestingLevel(props: UU5.TProps, component: React.ReactNode): UU5.TNestingLevel;
+      function getNestingLevel(props: Uu5.TProps, component: React.ReactNode): Uu5.TNestingLevel;
     }
 
     namespace Context {
@@ -73,7 +110,8 @@ declare module "uu5g05" {
 
     namespace Element {
       function isValid(object: any): boolean;
-      function clone(object: any): any;
+
+      function clone(object: any, params?: any): any;
     }
 
     namespace Object {
@@ -86,18 +124,32 @@ declare module "uu5g05" {
         name: string,
         something: string
       ): {
-        css: (css: string | TemplateStringsArray | React.CSSProperties | Record<string, React.CSSProperties>) => string;
+        css: (
+          css:
+            | string
+            | TemplateStringsArray
+            | React.CSSProperties
+            | Record<string, React.CSSProperties>
+        ) => string;
       };
     }
   }
 
   global {
-    namespace UU5 {
+    namespace Uu5 {
       type TProps = Record<string, any>;
 
-      type TDefaultProps<Props extends TProps> = Props & { className?: string; children?: React.ReactNode };
+      type TDefaultProps<Props extends TProps> = Props & {
+        className?: string;
+        style?: React.CSSProperties;
+        children?: React.ReactNode;
+        testId?: string;
+      };
 
-      type TComponent<Props extends TProps> = React.FC<TDefaultProps<Props>> & { logger: TLogger; uu5Tag: string };
+      type TComponent<Props extends TProps> = React.FC<TDefaultProps<Props>> & {
+        logger: TLogger;
+        uu5Tag: string;
+      };
 
       interface TComponentDefinitionBase<Props extends TProps> {
         uu5Tag: string;
@@ -106,14 +158,25 @@ declare module "uu5g05" {
         defaultProps?: Partial<Props>;
       }
       interface TComponentDefinition<Props extends TProps> extends TComponentDefinitionBase<Props> {
-        render: (props: UU5.TDefaultProps<Props>) => React.ReactNode;
+        render: (props: Uu5.TDefaultProps<Props>) => React.ReactNode;
       }
 
-      interface TComponentDefinitionWithRef<Props extends TProps, Interface> extends TComponentDefinitionBase<Props> {
-        render: (props: UU5.TDefaultProps<Props>, ref: React.Ref<Interface>) => React.ReactNode;
+      interface TComponentDefinitionWithRef<Props extends TProps, Interface>
+        extends TComponentDefinitionBase<Props> {
+        render: (props: Uu5.TDefaultProps<Props>, ref: React.Ref<Interface>) => React.ReactNode;
       }
 
-      type TNestingLevel = null | "uve" | "route" | "areaCollection" | "area" | "boxCollection" | "box" | "spotCollection" | "spot" | "inline";
+      type TNestingLevel =
+        | null
+        | "uve"
+        | "route"
+        | "areaCollection"
+        | "area"
+        | "boxCollection"
+        | "box"
+        | "spotCollection"
+        | "spot"
+        | "inline";
 
       interface TPropTypes {
         func: TPropTypeFunction;
@@ -142,13 +205,20 @@ declare module "uu5g05" {
       }
 
       interface TFormDataEvent<T> {
-        data: { value: T };
+        data: {
+          value: T;
+        };
       }
 
       /**
        * One item definition
        */
-      type TLsi = Record<string, string>;
+      type TLsi = Record<string, React.ReactNode>;
+
+      /**
+       * One item definition but with string values
+       */
+      type TLsi$String = Record<string, string>;
       /**
        * Evaluated lsi file to language
        */
@@ -156,8 +226,8 @@ declare module "uu5g05" {
       /**
        * Content of lsi file
        */
-      type TLsiMap = Record<string, UU5.TLsi>;
-      type TReactNodeOrLsi = React.ReactNode | UU5.TLsi;
+      type TLsiMap = Record<string, Uu5.TLsi>;
+      type TReactNodeOrLsi = React.ReactNode | Uu5.TLsi;
       type TSize = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
 
       interface TLogger {
@@ -169,6 +239,7 @@ declare module "uu5g05" {
 
       interface TElementSize<T> {
         ref: React.RefCallback<T>;
+        width: number;
         height: number;
       }
 
@@ -189,13 +260,41 @@ declare module "uu5g05" {
       }
 
       interface TUseDataList$Return<T> {
-        state: "pendingNoData" | "pending" | "readyNoData" | "ready" | "errorNoData" | "error";
-        data: { data: T }[];
+        state:
+          | "pendingNoData"
+          | "pending"
+          | "readyNoData"
+          | "ready"
+          | "errorNoData"
+          | "error"
+          | "itemPending";
+        data: {
+          data: T;
+          handlerMap: any;
+        }[];
         handlerMap: any;
+        newData: T[];
+        pendingData: any;
+        errorData: any;
       }
 
       interface ISession {
         identity: any;
+      }
+
+      interface TUseDataList$LoadReturn<T> {
+        itemList: T[];
+        pageInfo: TPageInfo$Response;
+      }
+
+      interface TPageInfo$Request {
+        pageIndex: number;
+        pageSize: number;
+      }
+      interface TPageInfo$Response {
+        pageIndex: number;
+        pageSize: number;
+        total: number;
       }
     }
   }
