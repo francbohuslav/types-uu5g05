@@ -272,6 +272,7 @@ declare module "uu5g05-elements" {
         type?: "major" | "common" | "minor" | "h1" | "h2" | "h3" | "h4" | "h5" | "caption" | "code";
       };
 
+  // See https://cdn.plus4u.net/uu-gds-svgg01/1.0.0/assets/stencil-map.json
   type GdsIcon =
     | "uugds-account-badge"
     | "uugds-account-multi"
