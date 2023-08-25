@@ -825,4 +825,27 @@ declare module "uu5g05-elements" {
     | "uugdsstencil-weather-temperature"
     | "uugdsstencil-weather-waterdrop"
     | "uugdsstencil-weather-wind";
+
+  namespace UuGds {
+    namespace SpacingPalette {
+      const getValue: ((path: ["fixed", "a"]) => 2) &
+        ((path: ["fixed", "b"]) => 4) &
+        ((path: ["fixed", "c"]) => 8) &
+        ((path: ["fixed", "d"]) => 12) &
+        ((path: ["fixed", "e"]) => 16) &
+        ((path: ["fixed", "f"]) => 20) &
+        ((path: ["fixed", "g"]) => 24) &
+        ((path: ["fixed", "h"]) => 32) &
+        ((path: ["fixed", "i"]) => 36) &
+        ((path: ["fixed", "j"]) => 40) &
+        ((path: ["fixed", "k"]) => 48) &
+        ((path: ["fixed", "l"]) => 64) &
+        ((path: ["fixed", "m"]) => 80) &
+        ((path: ["inline", "a"]) => 0.1) &
+        ((path: ["inline", "b"]) => 0.15) &
+        ((path: ["inline", "c"]) => 0.2) &
+        ((path: ["inline", "d"]) => 0.3) &
+        ((path: ["inline", "e"]) => 0.4);
+    }
+  }
 }
