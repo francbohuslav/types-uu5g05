@@ -48,6 +48,10 @@ declare module "uu5g05" {
   function useElementSize<T>(): Uu5.TElementSize<T>;
   function useSession(): Uu5.ISession;
   function useTimeZone(): any;
+  function useUserPreferences(): [
+    Uu5.IUserPreferences,
+    (newPreferences: Uu5.IUserPreferences) => void
+  ];
 
   const PropTypes: Uu5.TPropTypes;
 
@@ -96,7 +100,7 @@ declare module "uu5g05" {
     }
 
     namespace Lsi {
-      function getMessage(lsi: Uu5.TLsi, langauge: string): string;
+      function getMessage(lsi: Uu5.TLsi, language: string): string;
       function setDefaultLsi(library: string, lsi: any): void;
     }
 
@@ -295,6 +299,33 @@ declare module "uu5g05" {
         pageIndex: number;
         pageSize: number;
         total: number;
+      }
+
+      interface IUserPreferences {
+        /** "CZK" */
+        currency: string;
+        /** "," */
+        currencyDecimalSeparator: string;
+        /** " " */
+        currencyGroupingSeparator: string;
+        /** 24 */
+        hourFormat: 12 | 24;
+        /** ['cs-cz', 'en-us', 'en', 'cs'] */
+        languageList: string[];
+        /** "dddd D. MMMM Y" */
+        longDateFormat: string;
+        /** "D. M. Y" */
+        mediumDateFormat: string;
+        /** "," */
+        numberDecimalSeparator: string;
+        /** " " */
+        numberGroupingSeparator: string;
+        /** "DD.MM.Y" */
+        shortDateFormat: string;
+        /** "Europe/Prague" */
+        timeZone: string;
+        /** 1 */
+        weekStartDay: number;
       }
     }
   }
