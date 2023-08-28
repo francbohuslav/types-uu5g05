@@ -103,6 +103,7 @@ declare module "uu5g05-forms" {
         onBlur?: Function;
         onFocus?: Function;
         onValidate?: (event: TValidation$Event) => TValidation$Result | undefined;
+        validationRef?: React.RefObject<any>,
         onValidationEnd?: (event: TValidationEndEvent) => void;
       }
 
