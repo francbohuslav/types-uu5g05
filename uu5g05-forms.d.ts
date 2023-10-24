@@ -58,6 +58,7 @@ declare module "uu5g05-forms" {
   const DateTime: UU5Forms.TComponent<DateTimeProps, string | undefined>;
   const FormDateTime: UU5Forms.TFormComponent<DateTimeProps, string | undefined>;
 
+  const File: UU5Forms.TComponent<{ multiple?: boolean }, number>;
   const FormFile: UU5Forms.TFormComponent<{ multiple?: boolean }, number>;
 
   const DateTimeRangeProvider: Uu5.TComponent<{}>;
