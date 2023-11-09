@@ -1,14 +1,14 @@
 declare module "uu5g05" {
-  function createComponent<Props extends Uu5.TProps>(
-    definition: Uu5.TComponentDefinition<Props>
+  function createComponent<Props extends Uu5.TProps, Defaults extends {}>(
+    definition: Uu5.TComponentDefinition<Props, Defaults>
   ): Uu5.TComponent<Props>;
 
-  function createVisualComponent<Props extends Uu5.TProps>(
-    definition: Uu5.TComponentDefinition<Props>
+  function createVisualComponent<Props extends Uu5.TProps, Defaults extends {}>(
+    definition: Uu5.TComponentDefinition<Props, Defaults>
   ): Uu5.TComponent<Props>;
 
-  function createVisualComponentWithRef<Props extends Uu5.TProps, Interface>(
-    definition: Uu5.TComponentDefinitionWithRef<Props, Interface>
+  function createVisualComponentWithRef<Props extends Uu5.TProps, Interface, Defaults extends {}>(
+    definition: Uu5.TComponentDefinitionWithRef<Props, Interface, Defaults>
   ): Uu5.TComponent<Props & { ref?: React.Ref<Interface> }>;
 
   function useRef<T>(initial?: T): React.MutableRefObject<T>;
@@ -68,7 +68,7 @@ declare module "uu5g05" {
     }>
   >;
   const Lsi: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+    Uu5.TBaseProps<{
       lsi: Uu5.TLsi | string;
       params?: any[] | Record<string, any>;
     }>
@@ -143,31 +143,39 @@ declare module "uu5g05" {
     namespace Uu5 {
       type TProps = Record<string, any>;
 
-      type TDefaultProps<Props extends TProps> = Props & {
+      type TBaseProps<Props extends TProps> = Props & {
         className?: string;
         style?: React.CSSProperties;
         children?: React.ReactNode;
         testId?: string;
       };
 
-      type TComponent<Props extends TProps> = React.FC<TDefaultProps<Props>> & {
+      /** Type for defaultProps of component */
+      type TDefaultProps<Props extends TProps, Defaults extends {} = {}> = Partial<Props> &
+        Defaults;
+
+      type TComponent<Props extends TProps> = React.FC<TBaseProps<Props>> & {
         logger: TLogger;
         uu5Tag: string;
       };
 
-      interface TComponentDefinitionBase<Props extends TProps> {
+      interface TComponentDefinitionBase<Props extends TProps, Defaults extends {}> {
         uu5Tag: string;
         nestingLevel?: TNestingLevel[];
         propTypes?: Record<keyof Props, TPropTypeFunction>;
-        defaultProps?: Partial<Props>;
+        defaultProps?: TDefaultProps<Props, Defaults>;
       }
-      interface TComponentDefinition<Props extends TProps> extends TComponentDefinitionBase<Props> {
-        render: (props: Uu5.TDefaultProps<Props>) => React.ReactNode;
+      interface TComponentDefinition<Props extends TProps, Defaults extends {}>
+        extends TComponentDefinitionBase<Props, Defaults> {
+        render: (props: Uu5.TBaseProps<Props & Defaults>) => React.ReactNode;
       }
 
-      interface TComponentDefinitionWithRef<Props extends TProps, Interface>
-        extends TComponentDefinitionBase<Props> {
-        render: (props: Uu5.TDefaultProps<Props>, ref: React.Ref<Interface>) => React.ReactNode;
+      interface TComponentDefinitionWithRef<Props extends TProps, Interface, Defaults extends {}>
+        extends TComponentDefinitionBase<Props, Defaults> {
+        render: (
+          props: Uu5.TBaseProps<Props & Defaults>,
+          ref: React.Ref<Interface>
+        ) => React.ReactNode;
       }
 
       type TNestingLevel =
