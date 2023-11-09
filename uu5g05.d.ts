@@ -52,6 +52,7 @@ declare module "uu5g05" {
     Uu5.IUserPreferences,
     (newPreferences: Uu5.IUserPreferences) => void
   ];
+  function useRouteLeave(params?: { initialPrevented: boolean }): Uu5.IUseRouteLeave;
 
   const PropTypes: Uu5.TPropTypes;
 
@@ -334,6 +335,13 @@ declare module "uu5g05" {
         timeZone: string;
         /** 1 */
         weekStartDay: number;
+      }
+
+      interface IUseRouteLeave {
+        nextRoute: any;
+        refuse: () => void;
+        allow: () => void;
+        prevent: () => void;
       }
     }
   }

@@ -15,24 +15,26 @@ declare module "uu5g05-elements" {
     }>
   >;
 
-  const Button: Uu5.TComponent<
-    Uu5.TDefaultProps<{
-      onClick?(...args: any): any;
-      iconNotification?: boolean;
-      iconRight?: any;
-      type?: "button" | "submit" | "reset";
-      colorScheme?: any;
-      significance?: "common" | "highlighted" | "distinct" | "subdued";
-      effect?: "ground" | "upper";
-      size?: any;
-      borderRadius?: any;
-      width?: any;
-      pressed?: boolean;
-      icon?: GdsIcon;
-      disabled?: boolean;
-      tooltip?: string | Uu5.TLsi;
-    }>
-  >;
+  interface ButtonProps {
+    onClick?(...args: any): any;
+    iconNotification?: boolean;
+    iconRight?: any;
+    type?: "button" | "submit" | "reset";
+    colorScheme?: any;
+    significance?: "common" | "highlighted" | "distinct" | "subdued";
+    effect?: "ground" | "upper";
+    size?: any;
+    borderRadius?: any;
+    width?: any;
+    pressed?: boolean;
+    icon?: string | GdsIcon;
+    disabled?: boolean;
+    tooltip?: React.ReactNode | Uu5.TLsi;
+  }
+
+  const Button: Uu5.TComponent<Uu5.TDefaultProps<ButtonProps>>;
+  const TouchButton: Uu5.TComponent<Uu5.TDefaultProps<ButtonProps>>;
+
   const Progress: Uu5.TComponent<
     Uu5.TDefaultProps<{
       type?: "circular" | "horizontal";
@@ -66,7 +68,11 @@ declare module "uu5g05-elements" {
     }>
   >;
   const Pending: Uu5.TComponent<
-    Uu5.TDefaultProps<{ type?: "circular" | "horizontal" | "dots"; cssColor?: any }>
+    Uu5.TDefaultProps<{
+      type?: "circular" | "horizontal" | "dots";
+      cssColor?: any;
+      size?: Uu5.TSize;
+    }>
   >;
   const Pagination: Uu5.TComponent<
     Uu5.TDefaultProps<{
@@ -74,7 +80,7 @@ declare module "uu5g05-elements" {
       onChange(...args: any): any;
       count: number;
       type?: "pages" | "compact";
-      size?: "xxs" | "xs" | "s" | "m" | "l" | "xl";
+      size?: Uu5.TSize;
     }>
   >;
   const Icon: Uu5.TComponent<
@@ -117,7 +123,7 @@ declare module "uu5g05-elements" {
       download?: boolean | string;
       colorScheme?: any | any;
       significance?: any;
-      size?: "xxs" | "xs" | "s" | "m" | "l" | "xl";
+      size?: Uu5.TSize;
       disabled?: boolean;
       tooltip?: string | Uu5.TLsi;
     }>
@@ -207,6 +213,61 @@ declare module "uu5g05-elements" {
       info?: any | any;
       actionList?: any[];
       actionDirection?: "vertical" | "horizontal";
+    }>
+  >;
+  const LanguageSelector: Uu5.TComponent<Uu5.TDefaultProps<{ languageList: string[] }>>;
+
+  const Tooltip: Uu5.TComponent<
+    Uu5.TDefaultProps<{
+      delayMs?: number;
+      element: React.ReactNode;
+      borderRadius?: any;
+      colorScheme?: any;
+      significance?: "common" | "highlighted" | "distinct" | "subdued";
+      onClose?(): any;
+    }>
+  >;
+
+  const Block: Uu5.TComponent<
+    Uu5.TDefaultProps<{
+      collapsible?: boolean;
+      initialCollapsed?: boolean;
+      headerType?: "title" | "heading";
+      header?: React.ReactNode;
+      headerSeparator?: boolean;
+      actionList: {
+        children?: React.ReactNode;
+        onClick?(): void;
+        icon?: GdsIcon;
+        testId?: string;
+        primary?: boolean;
+        disabled?: boolean;
+      }[];
+    }>
+  >;
+
+  const Popover: Uu5.TComponent<
+    Uu5.TDefaultProps<{
+      element?: React.ReactNode;
+      preferredPosition?: string;
+      borderRadius?: any;
+      onClose?(): void;
+    }>
+  >;
+
+  const MenuList: Uu5.TComponent<
+    Uu5.TDefaultProps<{
+      itemList: {
+        children?: React.ReactNode;
+        onClick?(): void;
+        testId?: string;
+      }[];
+    }>
+  >;
+
+  const Badge: Uu5.TComponent<
+    Uu5.TDefaultProps<{
+      size?: Uu5.TSize;
     }>
   >;
 
@@ -828,6 +889,10 @@ declare module "uu5g05-elements" {
     | "uugdsstencil-weather-wind";
 
   namespace UuGds {
+    function getValue(args: string[]): any;
+    namespace ColorPalette {
+      function getValue(args: string[]);
+    }
     namespace SpacingPalette {
       const getValue: ((path: ["fixed", "a"]) => 2) &
         ((path: ["fixed", "b"]) => 4) &

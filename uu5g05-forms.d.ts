@@ -29,16 +29,26 @@ declare module "uu5g05-forms" {
   const FormSwitchSelect: UU5Forms.TFormComponent<SwitchSelectProps, string>;
 
   interface SelectProps {
-    itemList: { value: string }[];
+    itemList: { value: string; children?: React.ReactNode }[];
   }
   const Select: UU5Forms.TComponent<SelectProps, string>;
   const FormSelect: UU5Forms.TFormComponent<SelectProps, string>;
 
-  const Checkbox: UU5Forms.TComponent<{}, boolean>;
-  const FormCheckbox: UU5Forms.TFormComponent<{}, boolean>;
+  interface CheckboxProps {
+    box?: boolean;
+    size?: Uu5.TSize;
+  }
+  const Checkbox: UU5Forms.TComponent<CheckboxProps, boolean>;
+  const FormCheckbox: UU5Forms.TFormComponent<CheckboxProps, boolean>;
 
-  const TextArea: UU5Forms.TComponent<{}, string>;
-  const FormTextArea: UU5Forms.TFormComponent<{}, string>;
+  interface TextAreaProps {
+    maxLength?: number;
+    rows?: number;
+    maxRows?: number;
+    autoResize?: boolean;
+  }
+  const TextArea: UU5Forms.TComponent<TextAreaProps, string>;
+  const FormTextArea: UU5Forms.TFormComponent<TextAreaProps, string>;
 
   interface NumberProps {
     min?: number;
@@ -53,10 +63,19 @@ declare module "uu5g05-forms" {
   const FormDateRange: UU5Forms.TFormComponent<DateRangeProps, string>;
 
   interface DateTimeProps {
-    rangePosition: "start" | "end";
+    rangePosition?: "start" | "end";
+    min?: string;
+    step?: number;
   }
   const DateTime: UU5Forms.TComponent<DateTimeProps, string | undefined>;
   const FormDateTime: UU5Forms.TFormComponent<DateTimeProps, string | undefined>;
+
+  interface DateProps {
+    rangePosition?: "start" | "end";
+    min?: string;
+  }
+  const Date: UU5Forms.TComponent<DateProps, string | undefined>;
+  const FormDate: UU5Forms.TFormComponent<DateProps, string | undefined>;
 
   const File: UU5Forms.TComponent<{ multiple?: boolean }, number>;
   const FormFile: UU5Forms.TFormComponent<{ multiple?: boolean }, number>;
@@ -66,16 +85,17 @@ declare module "uu5g05-forms" {
   const SubmitButton: UU5Forms.TFormComponent<{ buttonSubmitProps?: any }>;
   const CancelButton: UU5Forms.TFormComponent<{ onClick?: () => void }>;
 
-  const Form: Uu5.TComponent<{}> & {
-    Provider: React.FC<
-      React.PropsWithChildren<{
-        initialValue?: any;
-        onSubmit: (event: UU5Forms.TSubmitEvent<any>) => void;
-        onValidate?: UU5Forms.TValidation$Handler;
-      }>
-    >;
+  interface FormProps {
+    initialValue?: any;
+    onSubmit: (event: UU5Forms.TSubmitEvent<any>) => void;
+    onValidate?: UU5Forms.TValidation$Handler;
+  }
+
+  const Form: Uu5.TComponent<FormProps> & {
+    Provider: React.FC<React.PropsWithChildren<FormProps>>;
     View: Uu5.TComponent<{ gridLayout?: string }>;
   };
+
   global {
     namespace UU5Forms {
       interface TFormApi<T> {
@@ -104,7 +124,7 @@ declare module "uu5g05-forms" {
         onBlur?: Function;
         onFocus?: Function;
         onValidate?: (event: TValidation$Event) => TValidation$Result | undefined;
-        validationRef?: React.RefObject<any>,
+        validationRef?: React.RefObject<any>;
         onValidationEnd?: (event: TValidationEndEvent) => void;
       }
 
@@ -160,7 +180,7 @@ declare module "uu5g05-forms" {
         };
       }
 
-      interface TChangeEvent<T> extends React.ChangeEvent {
+      interface TChangeEvent<T> extends React.ChangeEvent<T> {
         data: {
           value: T;
           name: string;
