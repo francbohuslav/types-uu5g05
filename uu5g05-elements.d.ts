@@ -1,6 +1,6 @@
 declare module "uu5g05-elements" {
-  const Modal: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Modal: UU5.TComponent<
+    UU5.TDefaultProps<{
       initialLeftOpen?: boolean;
       leftWidth?: number;
       leftType?: any;
@@ -11,7 +11,7 @@ declare module "uu5g05-elements" {
       closeOnButtonClick?: boolean;
       closeOnOverlayClick?: boolean;
       footer?: any;
-      width?: number;
+      width?: number | string;
     }>
   >;
 
@@ -20,7 +20,7 @@ declare module "uu5g05-elements" {
     iconNotification?: boolean;
     iconRight?: any;
     type?: "button" | "submit" | "reset";
-    colorScheme?: any;
+    colorScheme?: string;
     significance?: "common" | "highlighted" | "distinct" | "subdued";
     effect?: "ground" | "upper";
     size?: any;
@@ -29,25 +29,25 @@ declare module "uu5g05-elements" {
     pressed?: boolean;
     icon?: string | UUGds.GdsIcon;
     disabled?: boolean;
-    tooltip?: React.ReactNode | Uu5.TLsi;
+    tooltip?: React.ReactNode | UU5.TLsi;
   }
 
-  const Button: Uu5.TComponent<Uu5.TDefaultProps<ButtonProps>>;
-  const TouchButton: Uu5.TComponent<Uu5.TDefaultProps<ButtonProps>>;
+  const Button: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
+  const TouchButton: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
 
-  const Progress: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Progress: UU5.TComponent<
+    UU5.TDefaultProps<{
       type?: "circular" | "horizontal";
       cssColor?: any;
       text?: any;
       suffix?: any;
-      size?: Uu5.TSize;
+      size?: UU5.TSize;
       width?: number | string;
       value: number;
     }>
   >;
-  const GridTemplate: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const GridTemplate: UU5.TComponent<
+    UU5.TDefaultProps<{
       templateAreas: any;
       contentMap: {};
       contentStyleMap?: {};
@@ -55,9 +55,9 @@ declare module "uu5g05-elements" {
       columnGap?: number;
     }>
   >;
-  const CollapsibleBox: Uu5.TComponent<Uu5.TDefaultProps<{ collapsed?: boolean }>>;
-  const Panel: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const CollapsibleBox: UU5.TComponent<UU5.TDefaultProps<{ collapsed?: boolean }>>;
+  const Panel: UU5.TComponent<
+    UU5.TDefaultProps<{
       header: any;
       open?: boolean;
       onChange?(...args: any): any;
@@ -67,24 +67,24 @@ declare module "uu5g05-elements" {
       effect?: "ground" | "upper";
     }>
   >;
-  const Pending: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Pending: UU5.TComponent<
+    UU5.TDefaultProps<{
       type?: "circular" | "horizontal" | "dots";
       cssColor?: any;
-      size?: Uu5.TSize;
+      size?: UU5.TSize;
     }>
   >;
-  const Pagination: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Pagination: UU5.TComponent<
+    UU5.TDefaultProps<{
       index?: number;
       onChange(...args: any): any;
       count: number;
       type?: "pages" | "compact";
-      size?: Uu5.TSize;
+      size?: UU5.TSize;
     }>
   >;
-  const Icon: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Icon: UU5.TComponent<
+    UU5.TDefaultProps<{
       tooltip?: string;
       margin?: any;
       onClick?(...args: any): any;
@@ -93,16 +93,16 @@ declare module "uu5g05-elements" {
       icon: UUGds.GdsIcon;
     }>
   >;
-  const Line: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Line: UU5.TComponent<
+    UU5.TDefaultProps<{
       colorScheme?: any;
       significance?: "common" | "highlighted" | "distinct" | "subdued";
       margin?: any;
       direction?: "horizontal" | "vertical";
     }>
   >;
-  const Tag: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Tag: UU5.TComponent<
+    UU5.TDefaultProps<{
       icon?: any;
       size?: any;
       ellipsis?: boolean;
@@ -115,21 +115,21 @@ declare module "uu5g05-elements" {
       focused?: boolean;
     }>
   >;
-  const Link: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Link: UU5.TComponent<
+    UU5.TDefaultProps<{
       onClick?(...args: any): any;
       href?: string;
       target?: string;
       download?: boolean | string;
       colorScheme?: any | any;
       significance?: any;
-      size?: Uu5.TSize;
+      size?: UU5.TSize;
       disabled?: boolean;
-      tooltip?: string | Uu5.TLsi;
+      tooltip?: string | UU5.TLsi;
     }>
   >;
-  const Dropdown: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Dropdown: UU5.TComponent<
+    UU5.TDefaultProps<{
       label?: any;
       itemList?: any;
       openPosition?: any;
@@ -141,8 +141,8 @@ declare module "uu5g05-elements" {
       onLabelClick?(...args: any): any;
     }>
   >;
-  const DateTime: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const DateTime: UU5.TComponent<
+    UU5.TDefaultProps<{
       value?: string | any;
       dateFormat?: "none" | "short" | "medium" | "long";
       timeFormat?: "none" | "short" | "medium" | "long";
@@ -151,9 +151,9 @@ declare module "uu5g05-elements" {
       timeZone?: string;
     }>
   >;
-  const Dialog: Uu5.TComponent<Uu5.TDefaultProps<any>>;
-  const Svg: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Dialog: UU5.TComponent<UU5.TDefaultProps<any>>;
+  const Svg: UU5.TComponent<
+    UU5.TDefaultProps<{
       code?: any;
       uri?: any;
       type?: "svg" | "img";
@@ -161,8 +161,8 @@ declare module "uu5g05-elements" {
       height?: any;
     }>
   >;
-  const HighlightedBox: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const HighlightedBox: UU5.TComponent<
+    UU5.TDefaultProps<{
       colorScheme?: any;
       significance?: "common" | "highlighted" | "distinct" | "subdued";
       borderRadius?: any;
@@ -173,17 +173,17 @@ declare module "uu5g05-elements" {
       overlay?: boolean;
     }>
   >;
-  const Text: Uu5.TComponent<Uu5.TDefaultProps<Text$Props & { colorScheme?: string }>>;
-  const Header: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Text: UU5.TComponent<UU5.TDefaultProps<Text$Props & { colorScheme?: string }>>;
+  const Header: UU5.TComponent<
+    UU5.TDefaultProps<{
       icon?: any | string;
       onIconClick?(...args: any): any;
       title?: React.ReactNode;
-      size?: Uu5.TSize;
+      size?: UU5.TSize;
     }>
   >;
-  const Box: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Box: UU5.TComponent<
+    UU5.TDefaultProps<{
       shape?: "ground" | "interactiveElement" | "interactiveItem" | "background";
       colorScheme?: any;
       significance?: "common" | "highlighted" | "distinct" | "subdued";
@@ -195,8 +195,8 @@ declare module "uu5g05-elements" {
       onClick?(...args: any): any;
     }>
   >;
-  const Flag: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Flag: UU5.TComponent<
+    UU5.TDefaultProps<{
       src?: any;
       code?: any;
       type?: "rectangle" | "square" | "circle";
@@ -205,8 +205,8 @@ declare module "uu5g05-elements" {
       borderRadius?: any;
     }>
   >;
-  const PlaceholderBox: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const PlaceholderBox: UU5.TComponent<
+    UU5.TDefaultProps<{
       significance?: "common" | "subdued";
       code?: any;
       header?: any | any;
@@ -215,21 +215,22 @@ declare module "uu5g05-elements" {
       actionDirection?: "vertical" | "horizontal";
     }>
   >;
-  const LanguageSelector: Uu5.TComponent<Uu5.TDefaultProps<{ languageList: string[] }>>;
+  const LanguageSelector: UU5.TComponent<UU5.TDefaultProps<{ languageList: string[] }>>;
 
-  const Tooltip: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Tooltip: UU5.TComponent<
+    UU5.TDefaultProps<{
       delayMs?: number;
-      element: React.ReactNode;
+      element: React.ReactNode | HTMLElement;
       borderRadius?: any;
       colorScheme?: any;
       significance?: "common" | "highlighted" | "distinct" | "subdued";
       onClose?(): any;
+      relative?: boolean;
     }>
   >;
 
-  const Block: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Block: UU5.TComponent<
+    UU5.TDefaultProps<{
       collapsible?: boolean;
       initialCollapsed?: boolean;
       headerType?: "title" | "heading";
@@ -246,17 +247,17 @@ declare module "uu5g05-elements" {
     }>
   >;
 
-  const Popover: Uu5.TComponent<
-    Uu5.TDefaultProps<{
-      element?: React.ReactNode;
+  const Popover: UU5.TComponent<
+    UU5.TDefaultProps<{
+      element?: React.ReactNode | HTMLElement;
       preferredPosition?: string;
       borderRadius?: any;
       onClose?(): void;
     }>
   >;
 
-  const MenuList: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const MenuList: UU5.TComponent<
+    UU5.TDefaultProps<{
       itemList: {
         children?: React.ReactNode;
         onClick?(): void;
@@ -265,14 +266,15 @@ declare module "uu5g05-elements" {
     }>
   >;
 
-  const Badge: Uu5.TComponent<
-    Uu5.TDefaultProps<{
-      size?: Uu5.TSize;
+  const Badge: UU5.TComponent<
+    UU5.TDefaultProps<{
+      size?: UU5.TSize;
+      colorScheme?: string;
     }>
   >;
 
-  const Grid: Uu5.TComponent<
-    Uu5.TDefaultProps<{
+  const Grid: UU5.TComponent<
+    UU5.TDefaultProps<{
       display?: "block" | "inline";
       templateAreas?: any;
       templateRows?: any;
@@ -288,8 +290,8 @@ declare module "uu5g05-elements" {
       flow?: any;
     }>
   > & {
-    Item: Uu5.TComponent<
-      Uu5.TDefaultProps<{
+    Item: UU5.TComponent<
+      UU5.TDefaultProps<{
         gridArea?: string;
         colSpan?: any;
         rowSpan?: any;
@@ -302,9 +304,9 @@ declare module "uu5g05-elements" {
 
   function useAlertBus(): { addAlert: (message: any, durationMs?: number, priority?: any) => void };
 
-  function withTooltip<P extends Uu5.TProps>(
-    component: Uu5.TComponent<P>
-  ): Uu5.TComponent<P & { tooltip: Uu5.TLsi }>;
+  function withTooltip<P extends UU5.TProps>(
+    component: UU5.TComponent<P>
+  ): UU5.TComponent<P & { tooltip: UU5.TLsi }>;
 
   type Text$Props =
     | {

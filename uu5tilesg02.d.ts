@@ -1,7 +1,7 @@
 declare module "uu5tilesg02" {
-  const ControllerProvider: Uu5.TComponent<Uu5.TDefaultProps<UU5Tiles.TControllerProvider$Props>>;
+  const ControllerProvider: UU5.TComponent<UU5.TDefaultProps<UU5Tiles.TControllerProvider$Props>>;
 
-  const PresetProvider: Uu5.TComponent<Uu5.TDefaultProps<UU5Tiles.TPresetProvider$Props>>;
+  const PresetProvider: UU5.TComponent<UU5.TDefaultProps<UU5Tiles.TPresetProvider$Props>>;
 
   function usePreset(): UU5Tiles.TUsePreset;
   function useController(): UU5Tiles.TUseController;
@@ -56,7 +56,7 @@ declare module "uu5tilesg02" {
 
       interface TSorterDefinition {
         key: string;
-        label?: Uu5.TLsi;
+        label?: UU5.TLsi;
         sort?: (item1: any, item2: any) => number;
       }
 
@@ -65,7 +65,7 @@ declare module "uu5tilesg02" {
          * Unique column identifier
          */
         value: string;
-        label: Uu5.TLsi;
+        label: UU5.TLsi;
         visible: boolean | "always";
         fixed: "end" | undefined;
       }

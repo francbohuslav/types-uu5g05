@@ -1,7 +1,7 @@
 declare module "uu5g05-forms" {
   function useFormApi<T>(): UU5Forms.TFormApi<T>;
-  function withFormItem<P extends Uu5.TProps>(component: Uu5.TComponent<P>): Uu5.TComponent<P>;
-  function withFormInput<P extends Uu5.TProps>(component: Uu5.TComponent<P>): Uu5.TComponent<P>;
+  function withFormItem<P extends UU5.TProps>(component: UU5.TComponent<P>): UU5.TComponent<P>;
+  function withFormInput<P extends UU5.TProps>(component: UU5.TComponent<P>): UU5.TComponent<P>;
 
   const Label: UU5Forms.TFormComponent<{}>;
 
@@ -36,7 +36,6 @@ declare module "uu5g05-forms" {
 
   interface CheckboxProps {
     box?: boolean;
-    size?: Uu5.TSize;
   }
   const Checkbox: UU5Forms.TComponent<CheckboxProps, boolean>;
   const FormCheckbox: UU5Forms.TFormComponent<CheckboxProps, boolean>;
@@ -55,8 +54,8 @@ declare module "uu5g05-forms" {
     max?: number;
     step?: number;
   }
-  const Number: UU5Forms.TComponent<NumberProps, number>;
-  const FormNumber: UU5Forms.TFormComponent<NumberProps, number>;
+  const Number: UU5Forms.TComponent<NumberProps, number | undefined>;
+  const FormNumber: UU5Forms.TFormComponent<NumberProps, number | undefined>;
 
   interface DateRangeProps {}
   const DateRange: UU5Forms.TComponent<DateRangeProps, string>;
@@ -80,20 +79,23 @@ declare module "uu5g05-forms" {
   const File: UU5Forms.TComponent<{ multiple?: boolean }, number>;
   const FormFile: UU5Forms.TFormComponent<{ multiple?: boolean }, number>;
 
-  const DateTimeRangeProvider: Uu5.TComponent<{}>;
+  const DateTimeRangeProvider: UU5.TComponent<{}>;
 
   const SubmitButton: UU5Forms.TFormComponent<{ buttonSubmitProps?: any }>;
   const CancelButton: UU5Forms.TFormComponent<{ onClick?: () => void }>;
 
   interface FormProps {
     initialValue?: any;
+    disableLeaveConfirmation?: boolean;
     onSubmit: (event: UU5Forms.TSubmitEvent<any>) => void;
     onValidate?: UU5Forms.TValidation$Handler;
   }
 
-  const Form: Uu5.TComponent<FormProps> & {
-    Provider: React.FC<React.PropsWithChildren<FormProps>>;
-    View: Uu5.TComponent<{ gridLayout?: string }>;
+  const Form: UU5.TComponent<FormProps> & {
+    Provider: React.FC<
+      FormProps & { children: JSX.Element | ((opt: { value: any }) => JSX.Element) }
+    >;
+    View: UU5.TComponent<{ gridLayout?: string }>;
   };
 
   global {
@@ -129,9 +131,9 @@ declare module "uu5g05-forms" {
       }
 
       interface TWithFormInputProps {
-        label?: Uu5.TLsi | React.ReactNode;
-        info?: Uu5.TLsi | React.ReactNode;
-        message?: Uu5.TLsi | React.ReactNode;
+        label?: UU5.TLsi | React.ReactNode;
+        info?: UU5.TLsi | React.ReactNode;
+        message?: UU5.TLsi | React.ReactNode;
         messageParams?: any[];
         inputAttrs?: any;
         feedback?: TFeedback;
@@ -145,12 +147,17 @@ declare module "uu5g05-forms" {
         readOnly?: boolean;
         disabled?: boolean;
         validateOnMount?: boolean;
+        borderRadius?: any;
+        autoFocus?: boolean;
+        size?: UU5.TSize;
+        elementRef?: React.MutableRefObject<any>;
+        elementAttrs?: Record<string, any>;
       }
 
-      type TComponent<Props, TValue = any> = Uu5.TComponent<
+      type TComponent<Props, TValue = any> = UU5.TComponent<
         TWithFormItemProps & TWithFormInputProps & TInputProps & Props & { value: TValue }
       >;
-      type TFormComponent<Props, TValue = any> = Uu5.TComponent<
+      type TFormComponent<Props, TValue = any> = UU5.TComponent<
         TWithFormItemProps & TWithFormInputProps & TInputProps & Props & { initialValue?: TValue }
       >;
 
@@ -159,7 +166,7 @@ declare module "uu5g05-forms" {
         /** severity of the message */
         feedback: TFeedback;
         /** string or lsi object with a message */
-        message?: Uu5.TLsi | React.ReactNode;
+        message?: UU5.TLsi | React.ReactNode;
         /** array of values, which could be filled to message */
         messageParams?: any[];
       }
@@ -169,6 +176,7 @@ declare module "uu5g05-forms" {
           form: { value: any };
           name: string;
           value: any;
+          type: any;
         };
       }
 
