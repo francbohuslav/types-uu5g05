@@ -5,7 +5,7 @@
     "@types/node": "*",
     "@types/react": "*"
   },
-  "description": "Types for uu5g05",
+  "description": "Types for uu5g05 and other uu5 libraries",
   "main": "",
   "name": "types-uu5g05",
   "scripts": {
@@ -15,5 +15,8 @@
   "version": "1.0.9",
   "devDependencies": {
     "typescript": "^5.3.3"
+  },
+  "publishConfig": {
+    "registry": "https://repo.plus4u.net/repository/uu_tsstoreg01-javascript-repo"
   }
 }
