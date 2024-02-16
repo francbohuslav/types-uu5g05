@@ -30,6 +30,7 @@ declare module "uu5g05-forms" {
 
   interface SelectProps {
     itemList: { value: string; children?: React.ReactNode }[];
+    disableOptionReorder?: boolean;
   }
   const Select: UU5Forms.TComponent<SelectProps, string>;
   const FormSelect: UU5Forms.TFormComponent<SelectProps, string>;
@@ -87,6 +88,7 @@ declare module "uu5g05-forms" {
   interface FormProps {
     initialValue?: any;
     disableLeaveConfirmation?: boolean;
+    gridLayout?: string ;
     onSubmit: (event: UU5Forms.TSubmitEvent<any>) => void;
     onValidate?: UU5Forms.TValidation$Handler;
   }
@@ -152,6 +154,8 @@ declare module "uu5g05-forms" {
         size?: UU5.TSize;
         elementRef?: React.MutableRefObject<any>;
         elementAttrs?: Record<string, any>;
+        colorScheme?: string;
+        significance?: "common" | "highlighted" | "distinct" | "subdued";
       }
 
       type TComponent<Props, TValue = any> = UU5.TComponent<

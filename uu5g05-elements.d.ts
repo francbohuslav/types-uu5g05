@@ -236,14 +236,7 @@ declare module "uu5g05-elements" {
       headerType?: "title" | "heading";
       header?: React.ReactNode;
       headerSeparator?: boolean;
-      actionList: {
-        children?: React.ReactNode;
-        onClick?(): void;
-        icon?: UUGds.GdsIcon;
-        testId?: string;
-        primary?: boolean;
-        disabled?: boolean;
-      }[];
+      actionList: UU5Elements.TActionListItem[];
     }>
   >;
 
@@ -270,6 +263,12 @@ declare module "uu5g05-elements" {
     UU5.TDefaultProps<{
       size?: UU5.TSize;
       colorScheme?: string;
+    }>
+  >;
+
+  const ContextCenterButton: UU5.TComponent<
+    UU5.TDefaultProps<{
+      info: UU5Elements.TContextCenterInfoItem[];
     }>
   >;
 
@@ -302,7 +301,21 @@ declare module "uu5g05-elements" {
     >;
   };
 
+  const SpacingProvider: UU5.TComponent<{ type: "tight" | "normal" | "loose" }>;
+
   function useAlertBus(): { addAlert: (message: any, durationMs?: number, priority?: any) => void };
+
+  function useSpacing(): {
+    a: number;
+    b: number;
+    c: number;
+    d: number;
+    spaceA: number;
+    spaceB: number;
+    spaceC: number;
+    spaceD: number;
+    type: "tight" | "normal" | "loose";
+  };
 
   function withTooltip<P extends UU5.TProps>(
     component: UU5.TComponent<P>
@@ -398,8 +411,28 @@ declare module "uu5g05-elements" {
   }
 
   global {
+    namespace UU5Elements {
+      interface TActionListItem {
+        component?: React.ReactNode | (() => React.ReactNode);
+        children?: React.ReactNode;
+        tooltip?: string | UU5.TLsi;
+        onClick?(): void;
+        icon?: UUGds.GdsIcon;
+        colorScheme?: string;
+        significance?: string;
+        testId?: string;
+        primary?: boolean;
+        disabled?: boolean;
+      }
+      interface TContextCenterInfoItem {
+        label: React.ReactNode;
+        children: React.ReactNode;
+        icon?: string;
+      }
+    }
     namespace UUGds {
-      // See https://cdn.plus4u.net/uu-gds-svgg01/1.0.0/assets/stencil-map.json
+      // Definition https://cdn.plus4u.net/uu-gds-svgg01/1.0.0/assets/stencil-map.json
+      // Showcase https://uuapp.plus4u.net/uu-bookkit-maing01/2289b0b5308d43f89a7f34fefc5cefcb/book/page?code=47270913
       type GdsIcon =
         | "uugds-account-badge"
         | "uugds-account-multi"
@@ -602,6 +635,9 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-alert-info"
         | "uugdsstencil-arrow-arrow-down-left"
         | "uugdsstencil-arrow-arrow-down-right"
+        | "uugdsstencil-arrow-arrow-horizontal-bidirectional-square"
+        | "uugdsstencil-arrow-arrow-horizontal-bidirectional"
+        | "uugdsstencil-arrow-arrow-right-up-half"
         | "uugdsstencil-arrow-arrow-up-left"
         | "uugdsstencil-arrow-arrow-up-right"
         | "uugdsstencil-arrow-chevron-double-down"
@@ -626,18 +662,22 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-arrow-down-right-circle"
         | "uugdsstencil-arrow-down"
         | "uugdsstencil-arrow-expand-diagonal"
+        | "uugdsstencil-arrow-flip"
         | "uugdsstencil-arrow-left-circle"
         | "uugdsstencil-arrow-left"
         | "uugdsstencil-arrow-menu-down"
         | "uugdsstencil-arrow-menu-left"
         | "uugdsstencil-arrow-menu-right"
         | "uugdsstencil-arrow-menu-up"
+        | "uugdsstencil-arrow-merge-up"
         | "uugdsstencil-arrow-redo"
         | "uugdsstencil-arrow-refresh"
         | "uugdsstencil-arrow-reload"
         | "uugdsstencil-arrow-right-circle"
         | "uugdsstencil-arrow-right-left"
         | "uugdsstencil-arrow-right"
+        | "uugdsstencil-arrow-spacing-horizontal"
+        | "uugdsstencil-arrow-spacing-vertical"
         | "uugdsstencil-arrow-sync"
         | "uugdsstencil-arrow-undo"
         | "uugdsstencil-arrow-unfold-horizontal-less"
@@ -649,6 +689,8 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-arrow-up-left-circle"
         | "uugdsstencil-arrow-up-right-circle"
         | "uugdsstencil-arrow-up"
+        | "uugdsstencil-arrow-vertical-align-bottom"
+        | "uugdsstencil-arrow-vertical-align-top"
         | "uugdsstencil-badge-cancel"
         | "uugdsstencil-badge-check"
         | "uugdsstencil-badge-clock"
@@ -667,6 +709,8 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-chart-bar-chart-variant"
         | "uugdsstencil-chart-bar-chart"
         | "uugdsstencil-chart-bar-line-chart"
+        | "uugdsstencil-chart-bubble-chart"
+        | "uugdsstencil-chart-gauge-chart"
         | "uugdsstencil-chart-line-chart-down"
         | "uugdsstencil-chart-line-chart-trend-down"
         | "uugdsstencil-chart-line-chart-trend-up"
@@ -674,6 +718,8 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-chart-pie-chart-variant"
         | "uugdsstencil-chart-pie-chart"
         | "uugdsstencil-chart-pulse"
+        | "uugdsstencil-chart-radar-chart"
+        | "uugdsstencil-chart-radial-bar-chart"
         | "uugdsstencil-chart-status"
         | "uugdsstencil-chart-trend-down"
         | "uugdsstencil-chart-trend-up"
@@ -681,11 +727,16 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-commerce-bank"
         | "uugdsstencil-commerce-basket-solid"
         | "uugdsstencil-commerce-basket"
+        | "uugdsstencil-commerce-briefcase"
         | "uugdsstencil-commerce-calculator"
         | "uugdsstencil-commerce-cart-plus"
         | "uugdsstencil-commerce-cart"
         | "uugdsstencil-commerce-coins"
         | "uugdsstencil-commerce-credit-card"
+        | "uugdsstencil-commerce-desktop-text"
+        | "uugdsstencil-commerce-devices"
+        | "uugdsstencil-commerce-gift"
+        | "uugdsstencil-commerce-t-shirt"
         | "uugdsstencil-commerce-tag"
         | "uugdsstencil-commerce-ticket"
         | "uugdsstencil-communication-activity"
@@ -695,7 +746,11 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-communication-comment-text"
         | "uugdsstencil-communication-discussion"
         | "uugdsstencil-communication-email"
+        | "uugdsstencil-communication-emoji-cry"
+        | "uugdsstencil-communication-emoji-laugh"
+        | "uugdsstencil-communication-headphones"
         | "uugdsstencil-communication-inbox"
+        | "uugdsstencil-communication-law-paragraph"
         | "uugdsstencil-communication-megaphone"
         | "uugdsstencil-communication-phone-solid"
         | "uugdsstencil-communication-phone"
@@ -726,6 +781,8 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-edit-emoji-plus"
         | "uugdsstencil-edit-emoji-sad"
         | "uugdsstencil-edit-emoji-smile"
+        | "uugdsstencil-edit-flip-vertical"
+        | "uugdsstencil-edit-fllip-horizontal"
         | "uugdsstencil-edit-format-clear"
         | "uugdsstencil-edit-grid-dots-vertical-center"
         | "uugdsstencil-edit-horizontal-align-center"
@@ -739,6 +796,8 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-edit-italic"
         | "uugdsstencil-edit-line-cornered"
         | "uugdsstencil-edit-line-curved"
+        | "uugdsstencil-edit-line-dashed"
+        | "uugdsstencil-edit-line-dotted"
         | "uugdsstencil-edit-line-straight"
         | "uugdsstencil-edit-link"
         | "uugdsstencil-edit-list-bulleted"
@@ -750,27 +809,35 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-edit-plural"
         | "uugdsstencil-edit-quote-open"
         | "uugdsstencil-edit-richtext-toolbar"
+        | "uugdsstencil-edit-rotate-left"
+        | "uugdsstencil-edit-rotate-right"
         | "uugdsstencil-edit-section-plus"
         | "uugdsstencil-edit-strikethrough"
         | "uugdsstencil-edit-subscript"
         | "uugdsstencil-edit-superscript"
+        | "uugdsstencil-edit-text-paragraph"
         | "uugdsstencil-edit-text-plus"
         | "uugdsstencil-edit-text"
         | "uugdsstencil-edit-underline"
         | "uugdsstencil-edit-uu5"
         | "uugdsstencil-edit-vertical-align-center"
         | "uugdsstencil-education-assignment"
+        | "uugdsstencil-education-badge-award"
         | "uugdsstencil-education-book-index"
+        | "uugdsstencil-education-book-multiple"
         | "uugdsstencil-education-book"
         | "uugdsstencil-education-exam"
         | "uugdsstencil-education-game"
         | "uugdsstencil-education-presentation"
+        | "uugdsstencil-education-question"
         | "uugdsstencil-education-student-hat"
         | "uugdsstencil-education-trophy"
+        | "uugdsstencil-home-buildings"
         | "uugdsstencil-home-exit"
         | "uugdsstencil-home-home"
         | "uugdsstencil-home-lightbulb-glow"
         | "uugdsstencil-home-lightbulb"
+        | "uugdsstencil-home-pin"
         | "uugdsstencil-it-branchkit-branch"
         | "uugdsstencil-it-branchkit-clone"
         | "uugdsstencil-it-branchkit-commit"
@@ -779,7 +846,9 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-it-component"
         | "uugdsstencil-it-console"
         | "uugdsstencil-it-database"
+        | "uugdsstencil-it-div"
         | "uugdsstencil-it-figma-component"
+        | "uugdsstencil-it-function"
         | "uugdsstencil-it-html5"
         | "uugdsstencil-it-json"
         | "uugdsstencil-it-react"
@@ -793,6 +862,7 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-layout-align-right"
         | "uugdsstencil-layout-apps-edit"
         | "uugdsstencil-layout-apps"
+        | "uugdsstencil-layout-columns-1-1-1-1"
         | "uugdsstencil-layout-columns-1-1-1"
         | "uugdsstencil-layout-columns-1-1"
         | "uugdsstencil-layout-columns-1-2-1"
@@ -803,12 +873,23 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-layout-contain"
         | "uugdsstencil-layout-fixed"
         | "uugdsstencil-layout-layers"
+        | "uugdsstencil-layout-layout-area"
+        | "uugdsstencil-layout-layout-item"
+        | "uugdsstencil-layout-layout"
         | "uugdsstencil-layout-manage-columns"
+        | "uugdsstencil-layout-side-all"
+        | "uugdsstencil-layout-side-bottom"
+        | "uugdsstencil-layout-side-left-right"
+        | "uugdsstencil-layout-side-left"
+        | "uugdsstencil-layout-side-right"
+        | "uugdsstencil-layout-side-top-bottom"
+        | "uugdsstencil-layout-side-top"
         | "uugdsstencil-layout-sidebar-left"
         | "uugdsstencil-layout-sidebar-right"
         | "uugdsstencil-layout-view-extended"
         | "uugdsstencil-layout-view-grid"
         | "uugdsstencil-layout-view-list"
+        | "uugdsstencil-media-application"
         | "uugdsstencil-media-camera"
         | "uugdsstencil-media-cards"
         | "uugdsstencil-media-clipboard-plus"
@@ -816,6 +897,7 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-media-cloud-download-solid"
         | "uugdsstencil-media-cloud-upload"
         | "uugdsstencil-media-document-multi"
+        | "uugdsstencil-media-document-search"
         | "uugdsstencil-media-document"
         | "uugdsstencil-media-file-check"
         | "uugdsstencil-media-file-download"
@@ -830,14 +912,25 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-media-folder"
         | "uugdsstencil-media-grid-off"
         | "uugdsstencil-media-grid"
+        | "uugdsstencil-media-image-editor"
         | "uugdsstencil-media-image-multi"
         | "uugdsstencil-media-image-off"
+        | "uugdsstencil-media-image-preview"
         | "uugdsstencil-media-image"
+        | "uugdsstencil-media-laptop"
+        | "uugdsstencil-media-mic"
         | "uugdsstencil-media-monitor"
+        | "uugdsstencil-media-music"
         | "uugdsstencil-media-pause-circle"
         | "uugdsstencil-media-pdf"
+        | "uugdsstencil-media-pen-circle"
+        | "uugdsstencil-media-pen-path"
         | "uugdsstencil-media-play-circle"
+        | "uugdsstencil-media-play-solid"
+        | "uugdsstencil-media-printer"
+        | "uugdsstencil-media-qr-code"
         | "uugdsstencil-media-smartphone"
+        | "uugdsstencil-media-sound"
         | "uugdsstencil-media-stop-circle"
         | "uugdsstencil-media-table"
         | "uugdsstencil-media-text-box-plus"
@@ -847,6 +940,7 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-media-thumbnails"
         | "uugdsstencil-media-vector-frame-off"
         | "uugdsstencil-media-vector-frame"
+        | "uugdsstencil-media-video"
         | "uugdsstencil-media-zoom-in"
         | "uugdsstencil-media-zoom-out"
         | "uugdsstencil-navigation-compass"
@@ -856,15 +950,19 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-navigation-navigation-gps"
         | "uugdsstencil-navigation-navigation-marker"
         | "uugdsstencil-navigation-portal"
+        | "uugdsstencil-security-backup-password"
         | "uugdsstencil-security-key"
         | "uugdsstencil-security-lock-closed-solid"
         | "uugdsstencil-security-lock-closed"
         | "uugdsstencil-security-lock-open-solid"
         | "uugdsstencil-security-lock-open"
+        | "uugdsstencil-security-password"
         | "uugdsstencil-security-shield-check"
         | "uugdsstencil-shape-circle-solid"
         | "uugdsstencil-shape-circle"
         | "uugdsstencil-shape-dot"
+        | "uugdsstencil-shape-heart-solid"
+        | "uugdsstencil-shape-heart"
         | "uugdsstencil-shape-octagon-solid"
         | "uugdsstencil-shape-octagon"
         | "uugdsstencil-shape-rectangle-horizontal-solid"
@@ -886,9 +984,11 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-time-sprint"
         | "uugdsstencil-time-target"
         | "uugdsstencil-time-timer"
+        | "uugdsstencil-time-world-time"
         | "uugdsstencil-transport-car"
         | "uugdsstencil-transport-package-open"
         | "uugdsstencil-transport-package"
+        | "uugdsstencil-transport-rocket"
         | "uugdsstencil-transport-station"
         | "uugdsstencil-uiaction-archive"
         | "uugdsstencil-uiaction-bell-off"
@@ -915,6 +1015,8 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-uiaction-favorites-solid"
         | "uugdsstencil-uiaction-favorites"
         | "uugdsstencil-uiaction-filter"
+        | "uugdsstencil-uiaction-hand-point"
+        | "uugdsstencil-uiaction-log-in"
         | "uugdsstencil-uiaction-log-out"
         | "uugdsstencil-uiaction-maximize"
         | "uugdsstencil-uiaction-menu-dropdown"
@@ -934,6 +1036,7 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-uiaction-settings"
         | "uugdsstencil-uiaction-share"
         | "uugdsstencil-uiaction-sorting"
+        | "uugdsstencil-uiaction-stop"
         | "uugdsstencil-uiaction-tune-horizontal"
         | "uugdsstencil-uiaction-upload"
         | "uugdsstencil-user-account-badge"
@@ -941,6 +1044,7 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-user-account-key"
         | "uugdsstencil-user-account-multi-solid"
         | "uugdsstencil-user-account-multi"
+        | "uugdsstencil-user-account-plus"
         | "uugdsstencil-user-account-search"
         | "uugdsstencil-user-account-solid"
         | "uugdsstencil-user-account-swap"
@@ -949,7 +1053,12 @@ declare module "uu5g05-elements" {
         | "uugdsstencil-user-kid"
         | "uugdsstencil-weather-bolt"
         | "uugdsstencil-weather-moon"
+        | "uugdsstencil-weather-rain"
+        | "uugdsstencil-weather-snowflake"
+        | "uugdsstencil-weather-storm"
         | "uugdsstencil-weather-sun"
+        | "uugdsstencil-weather-sunrise"
+        | "uugdsstencil-weather-sunset"
         | "uugdsstencil-weather-temperature"
         | "uugdsstencil-weather-waterdrop"
         | "uugdsstencil-weather-wind";

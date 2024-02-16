@@ -48,6 +48,7 @@ declare module "uu5g05" {
   function useElementSize<T>(): UU5.TElementSize<T>;
   function useSession(): UU5.ISession;
   function useTimeZone(): any;
+  function useBackground(): string;
   function useUserPreferences(): [
     UU5.IUserPreferences,
     (newPreferences: UU5.IUserPreferences) => void
@@ -66,7 +67,7 @@ declare module "uu5g05" {
   >;
   const BackgroundProvider: React.FC<
     React.PropsWithChildren<{
-      background: "light" | "dark";
+      background: "light" | "soft" | "full" | "dark";
     }>
   >;
   const Lsi: UU5.TComponent<
@@ -140,8 +141,11 @@ declare module "uu5g05" {
             | TemplateStringsArray
             | React.CSSProperties
             | Record<string, React.CSSProperties>
+            | Record<string, Record<string, React.CSSProperties>>
         ) => string;
+        join: (...classes: (string | object)[]) => string;
       };
+      function joinClassName(...classNames: (string | undefined | null)[]): string;
     }
   }
 
