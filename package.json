@@ -7,12 +7,12 @@
   },
   "description": "Types for uu5g05 and other uu5 libraries",
   "main": "",
-  "name": "types-uu5g05",
+  "name": "@types/uu5g05",
   "scripts": {
     "check": "tsc"
   },
   "types": "index.d.ts",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "devDependencies": {
     "typescript": "^5.3.3"
   },
