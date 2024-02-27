@@ -29,7 +29,7 @@ declare module "uu5g05-forms" {
   const FormSwitchSelect: UU5Forms.TFormComponent<SwitchSelectProps, string>;
 
   interface SelectProps {
-    itemList: { value: string; children?: React.ReactNode }[];
+    itemList: { value: string | undefined; children?: React.ReactNode }[];
     disableOptionReorder?: boolean;
   }
   const Select: UU5Forms.TComponent<SelectProps, string>;
@@ -65,6 +65,7 @@ declare module "uu5g05-forms" {
   interface DateTimeProps {
     rangePosition?: "start" | "end";
     min?: string;
+    max?: string;
     step?: number;
   }
   const DateTime: UU5Forms.TComponent<DateTimeProps, string | undefined>;

@@ -222,10 +222,6 @@ declare module "uu5g05" {
         isRequired: TPropTypeFunction;
       }
 
-      interface TDataEvent<T> {
-        data: T;
-      }
-
       interface TFormDataEvent<T> {
         data: {
           value: T;

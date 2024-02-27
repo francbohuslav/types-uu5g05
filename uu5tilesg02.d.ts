@@ -1,7 +1,17 @@
 declare module "uu5tilesg02" {
   const ControllerProvider: UU5.TComponent<UU5.TDefaultProps<UU5Tiles.TControllerProvider$Props>>;
 
-  const PresetProvider: UU5.TComponent<UU5.TDefaultProps<UU5Tiles.TPresetProvider$Props>>;
+  const PresetProvider: UU5.TComponent<UU5.TDefaultProps<UU5Tiles.TPresetProvider$Props>> & {
+    getMatchingPresetList: (
+      presetList: UU5Tiles.TPresetDefinition[],
+      parts: {
+        filterList?: UU5Tiles.TFilterItem[];
+        sorterList?: UU5Tiles.TSorterItem[];
+        serieList?: UU5Tiles.TSerieDefinition[];
+        view?: any;
+      }
+    ) => (UU5Tiles.TPresetDefinition | undefined)[];
+  };
 
   function usePreset(): UU5Tiles.TUsePreset;
   function useController(): UU5Tiles.TUseController;
@@ -43,13 +53,14 @@ declare module "uu5tilesg02" {
         selectable?: "none" | "single" | "multiple";
         sorterDefinitionList?: TSorterDefinition[];
         onSorterChange?(event: TDataEvent<ChangeSorterAndFilterData>): any;
-        filterDefinitionList?: any[];
+        filterDefinitionList?: TFilterDefinition[];
         onFilterChange?(event: TDataEvent<ChangeSorterAndFilterData>): any;
         onSerieChange?(event: TDataEvent<{ serieList: TSerieDefinition[] }>): any;
       }
 
       interface TPresetProvider$Props {
         presetList: TPresetDefinition[];
+        value: string | undefined;
         onChange?(event: TDataEvent<{ value: string }>): void;
         onPresetListChange?(event: TDataEvent<{ presetList: UU5Tiles.TPresetDefinition[] }>): void;
       }
@@ -65,15 +76,18 @@ declare module "uu5tilesg02" {
          * Unique column identifier
          */
         value: string;
-        label: UU5.TLsi;
-        visible: boolean | "always";
-        fixed: "end" | undefined;
+        label: UU5.TLsi | string;
+        visible?: boolean | "always";
+        fixed?: "start" | "end";
       }
 
       interface TFilterDefinition {
         /** unique column identifier */
         key: string;
         label: React.ReactNode;
+        inputType?: string;
+        required?: boolean;
+        inputProps?: Record<string, any>;
       }
 
       interface TDataEvent<T> {

@@ -16,7 +16,7 @@ declare module "uu5g05-elements" {
   >;
 
   interface ButtonProps {
-    onClick?(...args: any): any;
+    onClick?(): void;
     iconNotification?: boolean;
     iconRight?: any;
     type?: "button" | "submit" | "reset";
@@ -27,7 +27,7 @@ declare module "uu5g05-elements" {
     borderRadius?: any;
     width?: any;
     pressed?: boolean;
-    icon?: string | UUGds.GdsIcon;
+    icon?: string | UUGds.GdsIcon | React.ReactNode;
     disabled?: boolean;
     tooltip?: React.ReactNode | UU5.TLsi;
   }
@@ -41,7 +41,7 @@ declare module "uu5g05-elements" {
       cssColor?: any;
       text?: any;
       suffix?: any;
-      size?: UU5.TSize;
+      size?: UU5.TSize | null;
       width?: number | string;
       value: number;
     }>
@@ -71,7 +71,7 @@ declare module "uu5g05-elements" {
     UU5.TDefaultProps<{
       type?: "circular" | "horizontal" | "dots";
       cssColor?: any;
-      size?: UU5.TSize;
+      size?: UU5.TSize | null;
     }>
   >;
   const Pagination: UU5.TComponent<
@@ -412,17 +412,10 @@ declare module "uu5g05-elements" {
 
   global {
     namespace UU5Elements {
-      interface TActionListItem {
+      interface TActionListItem extends UU5.TBaseProps<ButtonProps> {
         component?: React.ReactNode | (() => React.ReactNode);
-        children?: React.ReactNode;
-        tooltip?: string | UU5.TLsi;
-        onClick?(): void;
-        icon?: UUGds.GdsIcon;
-        colorScheme?: string;
-        significance?: string;
-        testId?: string;
         primary?: boolean;
-        disabled?: boolean;
+        collapsed?: boolean | "always" | "never" | "auto";
       }
       interface TContextCenterInfoItem {
         label: React.ReactNode;
