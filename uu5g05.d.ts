@@ -59,7 +59,8 @@ declare module "uu5g05" {
 
   const Fragment: any;
   const Content: any;
-  const RouteProvider: any;
+  const RouteProvider: React.FC<React.PropsWithChildren<{}>>;
+  const SessionProvider: React.FC<React.PropsWithChildren<{ authenticationService: any }>>;
   const ErrorBoundary: React.FC<
     React.PropsWithChildren<{
       fallback: (params: { error: Error }) => React.ReactNode;
@@ -222,6 +223,10 @@ declare module "uu5g05" {
         isRequired: TPropTypeFunction;
       }
 
+      interface TDataEvent<T> {
+        data: T;
+      }
+
       interface TFormDataEvent<T> {
         data: {
           value: T;
@@ -268,13 +273,11 @@ declare module "uu5g05" {
         height: number;
       }
 
-      interface ISsession {
-        identity: IIdentity;
-      }
-
       interface IIdentity {
         name: string;
         uuIdentity: string;
+        accountType: any;
+        loginLevelOfAssurance: number;
       }
 
       interface TUseDataObject$Return<T> {
@@ -304,7 +307,14 @@ declare module "uu5g05" {
       }
 
       interface ISession {
-        identity: any;
+        identity: IIdentity;
+        state: "authenticated" | "notAuthenticated";
+        login: () => void;
+        logout: () => void;
+        isExpiring: boolean;
+        untrustedData: any;
+        resetUntrustedData: any;
+        session: any;
       }
 
       interface TUseDataList$LoadReturn<T> {
