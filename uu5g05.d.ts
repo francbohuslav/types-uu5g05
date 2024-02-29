@@ -280,8 +280,16 @@ declare module "uu5g05" {
         loginLevelOfAssurance: number;
       }
 
+      type TUseDataObject$State =
+        | "pendingNoData"
+        | "pending"
+        | "readyNoData"
+        | "ready"
+        | "errorNoData"
+        | "error";
+
       interface TUseDataObject$Return<T> {
-        state: "pendingNoData" | "pending" | "readyNoData" | "ready" | "errorNoData" | "error";
+        state: TUseDataObject$State;
         data: T;
         handlerMap: any;
         errorData: any;
