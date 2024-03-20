@@ -71,7 +71,7 @@ declare module "uu5g05-elements" {
     UU5.TDefaultProps<{
       type?: "circular" | "horizontal" | "dots";
       cssColor?: any;
-      size?: UU5.TSize | null;
+      size?: UU5.TSize | "max" | null;
     }>
   >;
   const Pagination: UU5.TComponent<
@@ -246,6 +246,17 @@ declare module "uu5g05-elements" {
       preferredPosition?: string;
       borderRadius?: any;
       onClose?(): void;
+    }>
+  >;
+
+  const Alert: UU5.TComponent<
+    UU5.TDefaultProps<{
+      message?: React.ReactNode | UU5.TLsi;
+      header?: React.ReactNode | UU5.TLsi;
+      priority?: string;
+      icon?: string;
+      durationMs?: number;
+      onClose?(event: Event): void;
     }>
   >;
 

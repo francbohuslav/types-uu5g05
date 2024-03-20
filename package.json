@@ -1,6 +1,6 @@
 {
   "author": "Bohuslav Franc",
-  "bundleDependencies": false,
+  "bundleDependencies": [],
   "dependencies": {
     "@types/node": "*",
     "@types/react": "*"
@@ -12,11 +12,11 @@
     "check": "tsc"
   },
   "types": "index.d.ts",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "devDependencies": {
     "typescript": "^5.3.3"
   },
   "publishConfig": {
-    "registry": "https://repo.plus4u.net/repository/uu_tsstoreg01-javascript-repo"
+    "registry": "https://repo.plus4u.net/repository/uu_tsstoreg01-javascript-repo/"
   }
 }
