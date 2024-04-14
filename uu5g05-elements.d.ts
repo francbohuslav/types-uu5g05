@@ -35,6 +35,21 @@ declare module "uu5g05-elements" {
   const Button: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
   const TouchButton: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
 
+  interface DrawerProps {
+    open?: boolean;
+    onClose?: () => void;
+    type?: "elevated" | "flat" | "collapsible";
+    height?: number | string;
+    fullHeight?: boolean;
+    offsetTop?: number;
+    width?: number;
+    widthCollapsed?: number;
+    spacing: "tight" | "normal" | "loose";
+    content: React.ReactNode | (() => React.ReactNode);
+    collapsible?: boolean;
+  }
+  const Drawer: UU5.TComponent<UU5.TDefaultProps<DrawerProps>>;
+
   const Progress: UU5.TComponent<
     UU5.TDefaultProps<{
       type?: "circular" | "horizontal";
