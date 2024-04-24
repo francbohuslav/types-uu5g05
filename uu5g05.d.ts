@@ -17,6 +17,8 @@ declare module "uu5g05" {
 
   function useMemo<T>(method: () => T, dep?: any[]): T;
 
+  function useMemoObject<T>(obj: T, equals?: (a: T, b: T) => boolean): T;
+
   function useEffect(effect: React.EffectCallback, deps?: any[]): void;
 
   function useCallback<T extends Function>(callback: T, deps?: any[]): T;
@@ -217,6 +219,10 @@ declare module "uu5g05" {
         oneOfType: (args: TPropTypeFunction[]) => TPropTypeFunction;
         arrayOf: (type: TPropTypeFunction) => TPropTypeFunction;
         instanceOf: (object: any) => TPropTypeFunction;
+        isRequiredIf: (
+          type: TPropTypeFunction,
+          condition: (props: any) => boolean
+        ) => TPropTypeFunction;
       }
 
       interface TPropTypeFunction {
