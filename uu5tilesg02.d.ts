@@ -43,6 +43,7 @@ declare module "uu5tilesg02" {
           indexes: { rowIndex: number; colIndex: number }
         ) => React.ReactNode;
         sticky?: "left" | "right";
+        type?: "select" | "drag" | "actionList";
       }
 
       interface TControllerProvider$Props {

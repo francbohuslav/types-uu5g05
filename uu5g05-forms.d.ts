@@ -1,6 +1,8 @@
 declare module "uu5g05-forms" {
   function useFormApi<T>(): UU5Forms.TFormApi<T>;
-  function withFormItem<P extends UU5.TProps>(component: UU5.TComponent<P>): UU5.TComponent<P>;
+  function withFormItem<P extends UU5.TProps>(
+    component: UU5.TComponent<P>
+  ): UU5.TComponent<Omit<P, "onChange"> & UU5Forms.TWithFormItemProps>;
   function withFormInput<P extends UU5.TProps>(component: UU5.TComponent<P>): UU5.TComponent<P>;
 
   const Label: UU5Forms.TFormComponent<{}>;
@@ -89,14 +91,14 @@ declare module "uu5g05-forms" {
   interface FormProps {
     initialValue?: any;
     disableLeaveConfirmation?: boolean;
-    gridLayout?: string ;
+    gridLayout?: string;
     onSubmit: (event: UU5Forms.TSubmitEvent<any>) => void;
     onValidate?: UU5Forms.TValidation$Handler;
   }
 
   const Form: UU5.TComponent<FormProps> & {
     Provider: React.FC<
-      FormProps & { children: JSX.Element | ((opt: { value: any }) => JSX.Element) }
+      FormProps & { children: JSX.Element | JSX.Element[] | ((opt: { value: any }) => JSX.Element) }
     >;
     View: UU5.TComponent<{ gridLayout?: string }>;
   };
@@ -111,7 +113,7 @@ declare module "uu5g05-forms" {
         itemMap: Record<keyof T, TFormApi$Item>;
       }
 
-      interface TFormApiInited<T> extends TFormApi<T> {
+      interface TFormApiInitialized<T> extends TFormApi<T> {
         value: T;
       }
 
@@ -156,7 +158,7 @@ declare module "uu5g05-forms" {
         elementRef?: React.MutableRefObject<any>;
         elementAttrs?: Record<string, any>;
         colorScheme?: string;
-        significance?: "common" | "highlighted" | "distinct" | "subdued";
+        significance?: UU5Elements.TSignificance;
       }
 
       type TComponent<Props, TValue = any> = UU5.TComponent<

@@ -21,7 +21,7 @@ declare module "uu5g05-elements" {
     iconRight?: any;
     type?: "button" | "submit" | "reset";
     colorScheme?: string;
-    significance?: "common" | "highlighted" | "distinct" | "subdued";
+    significance?: UU5Elements.TSignificance;
     effect?: "ground" | "upper";
     size?: any;
     borderRadius?: any;
@@ -34,6 +34,19 @@ declare module "uu5g05-elements" {
 
   const Button: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
   const TouchButton: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
+
+  const Toggle: UU5.TComponent<
+    UU5.TDefaultProps<{
+      value?: boolean;
+      onChange?(value: boolean): void;
+      size?: UU5.TSize;
+      label?: React.ReactNode;
+      iconOn?: UUGds.GdsIcon;
+      iconOff?: UUGds.GdsIcon;
+      width?: any;
+      tooltip?: UU5.TLsi;
+    }>
+  >;
 
   interface DrawerProps {
     open?: boolean;
@@ -77,7 +90,7 @@ declare module "uu5g05-elements" {
       open?: boolean;
       onChange?(...args: any): any;
       colorScheme?: any;
-      significance?: "common" | "highlighted" | "distinct" | "subdued";
+      significance?: UU5Elements.TSignificance;
       borderRadius?: any;
       effect?: "ground" | "upper";
     }>
@@ -111,11 +124,27 @@ declare module "uu5g05-elements" {
   const Line: UU5.TComponent<
     UU5.TDefaultProps<{
       colorScheme?: any;
-      significance?: "common" | "highlighted" | "distinct" | "subdued";
+      significance?: UU5Elements.TSignificance;
       margin?: any;
       direction?: "horizontal" | "vertical";
     }>
   >;
+
+  const ListLayout: UU5.TComponent<
+    UU5.TDefaultProps<{
+      itemList: UU5Elements.TListLayoutItem[];
+      collapsibleItemList?: UU5Elements.TListLayoutItem[];
+    }>
+  >;
+
+  const ActionGroup: UU5.TComponent<
+    UU5.TDefaultProps<{
+      itemList: UU5Elements.TActionGroupItem[];
+      size?: UU5.TSize;
+      alignment?: "left" | "right";
+    }>
+  >;
+
   const Tag: UU5.TComponent<
     UU5.TDefaultProps<{
       icon?: any;
@@ -123,7 +152,7 @@ declare module "uu5g05-elements" {
       ellipsis?: boolean;
       borderRadius?: any;
       colorScheme?: any;
-      significance?: "common" | "highlighted" | "distinct" | "subdued";
+      significance?: UU5Elements.TSignificance;
       onClick?(...args: any): any;
       iconRight?: any;
       onIconRightClick?(...args: any): any;
@@ -179,7 +208,7 @@ declare module "uu5g05-elements" {
   const HighlightedBox: UU5.TComponent<
     UU5.TDefaultProps<{
       colorScheme?: any;
-      significance?: "common" | "highlighted" | "distinct" | "subdued";
+      significance?: UU5Elements.TSignificance;
       borderRadius?: any;
       icon?: any;
       onClose?(...args: any): any;
@@ -201,7 +230,7 @@ declare module "uu5g05-elements" {
     UU5.TDefaultProps<{
       shape?: "ground" | "interactiveElement" | "interactiveItem" | "background";
       colorScheme?: any;
-      significance?: "common" | "highlighted" | "distinct" | "subdued";
+      significance?: UU5Elements.TSignificance;
       aspectRatio?: any;
       size?: "xs" | "s" | "m" | "l";
       borderRadius?: any;
@@ -238,7 +267,7 @@ declare module "uu5g05-elements" {
       element: React.ReactNode | HTMLElement;
       borderRadius?: any;
       colorScheme?: any;
-      significance?: "common" | "highlighted" | "distinct" | "subdued";
+      significance?: UU5Elements.TSignificance;
       onClose?(): any;
       relative?: boolean;
     }>
@@ -246,11 +275,13 @@ declare module "uu5g05-elements" {
 
   const Block: UU5.TComponent<
     UU5.TDefaultProps<{
+      card?: "none" | "full" | "content";
       collapsible?: boolean;
       initialCollapsed?: boolean;
       headerType?: "title" | "heading";
       header?: React.ReactNode;
       headerSeparator?: boolean;
+      level?: number;
       actionList: UU5Elements.TActionListItem[];
     }>
   >;
@@ -379,6 +410,11 @@ declare module "uu5g05-elements" {
     namespace ColorPalette {
       function getValue(args: string[]): any;
     }
+
+    namespace BorderPalette {
+      function getValue(args: string[]): any;
+    }
+
     namespace SpacingPalette {
       const getValue: ((path: ["fixed", "a"]) => 2) &
         ((path: ["fixed", "b"]) => 4) &
@@ -447,6 +483,32 @@ declare module "uu5g05-elements" {
         label: React.ReactNode;
         children: React.ReactNode;
         icon?: string;
+      }
+
+      type TListLayoutItem =
+        | {
+            label?: UU5.TLsi | string;
+            info?: UU5.TLsi | string;
+            children?: React.ReactNode;
+            actionList?: any[];
+          }
+        | { divider: true };
+
+      type TSignificance = "common" | "highlighted" | "distinct" | "subdued";
+
+      interface TActionGroupItem {
+        component?: React.ReactNode;
+        significance?: TSignificance;
+        colorScheme?: string;
+        children?: React.ReactNode;
+        collapsedChildren?: React.ReactNode;
+        primary?: boolean;
+        icon?: UUGds.GdsIcon;
+        collapsedIcon?: UUGds.GdsIcon;
+        collapsed?: boolean | string;
+        tooltip?: string;
+        itemList?: (UU5Elements.TActionListItem | { divider: true })[];
+        onClick?: () => void;
       }
     }
     namespace UUGds {
