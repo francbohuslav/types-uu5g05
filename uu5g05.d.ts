@@ -118,7 +118,7 @@ declare module "uu5g05" {
     }
 
     namespace Context {
-      function create<T>(initial: T): [React.Context<NonNullable<T>>, () => NonNullable<T>];
+      function create<T>(initial: T): [React.Context<T>, () => T];
     }
 
     namespace Element {
