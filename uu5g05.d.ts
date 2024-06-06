@@ -223,6 +223,7 @@ declare module "uu5g05" {
           type: TPropTypeFunction,
           condition: (props: any) => boolean
         ) => TPropTypeFunction;
+        isDeprecated: (type: TPropTypeFunction, newPropertyName: string) => TPropTypeFunction;
       }
 
       interface TPropTypeFunction {

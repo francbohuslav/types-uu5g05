@@ -23,17 +23,30 @@ declare module "uu5g05-elements" {
     colorScheme?: string;
     significance?: UU5Elements.TSignificance;
     effect?: "ground" | "upper";
-    size?: any;
+    size?: UU5.TSize;
     borderRadius?: any;
     width?: any;
     pressed?: boolean;
     icon?: string | UUGds.GdsIcon | React.ReactNode;
+    collapsedIcon?: string | UUGds.GdsIcon | React.ReactNode;
     disabled?: boolean;
     tooltip?: React.ReactNode | UU5.TLsi;
+    collapsedChildren?: React.ReactNode;
   }
 
   const Button: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
   const TouchButton: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
+
+  interface ButtonGroupProps {
+    itemList: ButtonProps[];
+    size?: UU5.TSize;
+    colorScheme?: string;
+    significance?: UU5Elements.TSignificance;
+    effect?: "ground" | "upper";
+    borderRadius?: any;
+    width?: any;
+  }
+  const ButtonGroup: UU5.TComponent<UU5.TDefaultProps<ButtonGroupProps>>;
 
   const Toggle: UU5.TComponent<
     UU5.TDefaultProps<{
