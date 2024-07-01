@@ -51,13 +51,13 @@ declare module "uu5g05-elements" {
   const Toggle: UU5.TComponent<
     UU5.TDefaultProps<{
       value?: boolean;
-      onChange?(value: boolean): void;
+      onChange?(event: { data: { value: boolean } }): void;
       size?: UU5.TSize;
       label?: React.ReactNode;
       iconOn?: UUGds.GdsIcon;
       iconOff?: UUGds.GdsIcon;
       width?: any;
-      tooltip?: UU5.TLsi;
+      tooltip?: UU5.TLsi | string;
     }>
   >;
 
@@ -333,12 +333,30 @@ declare module "uu5g05-elements" {
     UU5.TDefaultProps<{
       size?: UU5.TSize;
       colorScheme?: string;
+      significance?: UU5Elements.TSignificance;
+      tooltip?: UU5.TLsi | string;
     }>
   >;
 
   const ContextCenterButton: UU5.TComponent<
     UU5.TDefaultProps<{
       info: UU5Elements.TContextCenterInfoItem[];
+    }>
+  >;
+
+  const ScrollableBox: UU5.TComponent<
+    UU5.TDefaultProps<{
+      height?: number | string;
+      minHeight?: number | string;
+      maxHeight?: number | string;
+      disableOverscroll?: boolean;
+      horizontal?: boolean;
+      initialScrollX?: number;
+      initialScrollY?: number;
+      scrollIndicator?: "gradient" | "disappear" | object;
+      scrollIndicatorOffset?: object;
+      scrollElementRef?: any;
+      scrollbarWidth?: number;
     }>
   >;
 

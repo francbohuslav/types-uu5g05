@@ -11,7 +11,9 @@ declare module "uu5g05-forms" {
     pattern?: string;
     patternMessage?: React.ReactNode;
   }
-  const Text: UU5Forms.TComponent<TextProps, string>;
+  const Text: UU5Forms.TComponent<TextProps, string> & {
+    Input: UU5Forms.TComponent<any, string>
+  };
   const FormText: UU5Forms.TFormComponent<TextProps, string>;
 
   interface TextSelectProps {
@@ -21,7 +23,9 @@ declare module "uu5g05-forms" {
     insertable?: boolean;
     multiple?: boolean;
   }
-  const TextSelect: UU5Forms.TComponent<TextSelectProps, string>;
+  const TextSelect: UU5Forms.TComponent<TextSelectProps, string> & {
+    Input: UU5Forms.TComponent<any, string>
+  };
   const FormTextSelect: UU5Forms.TFormComponent<TextSelectProps, string>;
 
   interface SwitchSelectProps {

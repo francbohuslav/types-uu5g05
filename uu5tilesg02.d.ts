@@ -86,9 +86,10 @@ declare module "uu5tilesg02" {
         /** unique column identifier */
         key: string;
         label: React.ReactNode;
-        inputType?: string;
+        inputType?: string | React.ReactNode | (() => React.ReactNode);
         required?: boolean;
         inputProps?: Record<string, any>;
+        valueFormatter?: (value: any) => React.ReactNode;
       }
 
       interface TDataEvent<T> {

@@ -94,6 +94,10 @@ declare module "uu5g05" {
   namespace Utils {
     namespace VisualComponent {
       function getAttrs(props: UU5.TProps, mainClass?: string): any;
+      function splitProps(
+        props: UU5.TProps,
+        mainClass?: string
+      ): { elementAttrs: any; elementProps: any; componentProps: any };
     }
 
     namespace LoggerFactory {
@@ -150,6 +154,17 @@ declare module "uu5g05" {
       };
       function joinClassName(...classNames: (string | undefined | null)[]): string;
     }
+
+    namespace Component {
+      function mergeStatics(
+        componentHoc: Record<string, any>,
+        componentWrapped: Record<string, any>
+      ): void;
+    }
+
+    class Event {
+      constructor(data: any, event?: any);
+    }
   }
 
   global {
@@ -161,6 +176,7 @@ declare module "uu5g05" {
         style?: React.CSSProperties;
         children?: React.ReactNode;
         testId?: string;
+        nestingLevel?: TNestingLevel;
       };
 
       /** Type for defaultProps of component */
@@ -169,7 +185,9 @@ declare module "uu5g05" {
 
       type TComponent<Props extends TProps> = React.FC<TBaseProps<Props>> & {
         logger: TLogger;
+        nestingLevel: TNestingLevel[];
         uu5Tag: string;
+        // propTypes: Record<keyof Props, TPropTypeFunction>;
       };
 
       interface TComponentDefinitionBase<Props extends TProps, Defaults extends {}> {
