@@ -279,11 +279,11 @@ declare module "uu5g05" {
       type TSize = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
 
       interface TLogger {
-        log: (...any: any[]) => void;
-        debug: (...any: any[]) => void;
-        info: (...any: any[]) => void;
-        warn: (...any: any[]) => void;
-        error: (...any: any[]) => void;
+        log: (message: string, error?: Error) => void;
+        debug: (message: string, error?: Error) => void;
+        info: (message: string, error?: Error) => void;
+        warn: (message: string, error?: Error) => void;
+        error: (message: string, error?: Error) => void;
         isDebugLoggable(): boolean;
         isInfoLoggable(): boolean;
         isWarnLoggable(): boolean;
