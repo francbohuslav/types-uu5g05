@@ -96,7 +96,7 @@ declare module "uu5g05-forms" {
     initialValue?: any;
     disableLeaveConfirmation?: boolean;
     gridLayout?: string;
-    onSubmit: (event: UU5Forms.TSubmitEvent<any>) => void;
+    onSubmit?: (event: UU5Forms.TSubmitEvent<any>) => void;
     onValidate?: UU5Forms.TValidation$Handler;
   }
 
