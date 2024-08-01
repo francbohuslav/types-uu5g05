@@ -12,7 +12,7 @@ declare module "uu5g05-forms" {
     patternMessage?: React.ReactNode;
   }
   const Text: UU5Forms.TComponent<TextProps, string> & {
-    Input: UU5Forms.TComponent<any, string>
+    Input: UU5Forms.TComponent<any, string>;
   };
   const FormText: UU5Forms.TFormComponent<TextProps, string>;
 
@@ -24,7 +24,7 @@ declare module "uu5g05-forms" {
     multiple?: boolean;
   }
   const TextSelect: UU5Forms.TComponent<TextSelectProps, string> & {
-    Input: UU5Forms.TComponent<any, string>
+    Input: UU5Forms.TComponent<any, string>;
   };
   const FormTextSelect: UU5Forms.TFormComponent<TextSelectProps, string>;
 
@@ -73,6 +73,7 @@ declare module "uu5g05-forms" {
     min?: string;
     max?: string;
     step?: number;
+    presetList?: string[];
   }
   const DateTime: UU5Forms.TComponent<DateTimeProps, string | undefined>;
   const FormDateTime: UU5Forms.TFormComponent<DateTimeProps, string | undefined>;
@@ -80,6 +81,7 @@ declare module "uu5g05-forms" {
   interface DateProps {
     rangePosition?: "start" | "end";
     min?: string;
+    presetList?: string[];
   }
   const Date: UU5Forms.TComponent<DateProps, string | undefined>;
   const FormDate: UU5Forms.TFormComponent<DateProps, string | undefined>;

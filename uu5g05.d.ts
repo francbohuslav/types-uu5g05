@@ -187,7 +187,6 @@ declare module "uu5g05" {
         logger: TLogger;
         nestingLevel: TNestingLevel[];
         uu5Tag: string;
-        // propTypes: Record<keyof Props, TPropTypeFunction>;
       };
 
       interface TComponentDefinitionBase<Props extends TProps, Defaults extends {}> {
