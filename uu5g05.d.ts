@@ -56,6 +56,10 @@ declare module "uu5g05" {
     (newPreferences: UU5.IUserPreferences) => void
   ];
   function useRouteLeave(params?: { initialPrevented: boolean }): UU5.IUseRouteLeave;
+  function useRoute(): [
+    UU5.IRoute,
+    (useCase: string, params?: Record<string, any>, options?: any) => void
+  ];
 
   const PropTypes: UU5.TPropTypes;
 
@@ -81,6 +85,7 @@ declare module "uu5g05" {
   >;
 
   const Environment: {
+    appVersion: string | undefined;
     appBaseUri: any;
     trustedUriRegExp: any;
     uu5DataMap: any;
@@ -97,7 +102,11 @@ declare module "uu5g05" {
       function splitProps(
         props: UU5.TProps,
         mainClass?: string
-      ): { elementAttrs: any; elementProps: any; componentProps: any };
+      ): {
+        elementAttrs: Record<string, any>;
+        elementProps: Record<string, any>;
+        componentProps: Record<string, any>;
+      };
     }
 
     namespace LoggerFactory {
@@ -123,6 +132,10 @@ declare module "uu5g05" {
 
     namespace Context {
       function create<T>(initial: T): [React.Context<T>, () => T];
+    }
+
+    namespace Dom {
+      function render(node: React.ReactNode, element: HTMLElement | null): void;
     }
 
     namespace Element {
@@ -160,6 +173,8 @@ declare module "uu5g05" {
         componentHoc: Record<string, any>,
         componentWrapped: Record<string, any>
       ): void;
+
+      function lazy(func: () => any): any;
     }
 
     class Event {
@@ -278,11 +293,11 @@ declare module "uu5g05" {
       type TSize = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
 
       interface TLogger {
-        log: (message: string, error?: Error) => void;
-        debug: (message: string, error?: Error) => void;
-        info: (message: string, error?: Error) => void;
-        warn: (message: string, error?: Error) => void;
-        error: (message: string, error?: Error) => void;
+        log: (...attrs: any[]) => void;
+        debug: (...attrs: any[]) => void;
+        info: (...attrs: any[]) => void;
+        warn: (...attrs: any[]) => void;
+        error: (...attrs: any[]) => void;
         isDebugLoggable(): boolean;
         isInfoLoggable(): boolean;
         isWarnLoggable(): boolean;
@@ -396,6 +411,13 @@ declare module "uu5g05" {
         refuse: () => void;
         allow: () => void;
         prevent: () => void;
+      }
+
+      interface IRoute {
+        component: any;
+        params: any;
+        prevRoute: string;
+        uu5Route: string;
       }
     }
   }

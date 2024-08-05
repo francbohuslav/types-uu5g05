@@ -56,6 +56,8 @@ declare module "uu5g05-forms" {
   const TextArea: UU5Forms.TComponent<TextAreaProps, string>;
   const FormTextArea: UU5Forms.TFormComponent<TextAreaProps, string>;
 
+  const FormLsi: UU5Forms.TFormComponent<any, UU5.TLsi>;
+
   interface NumberProps {
     min?: number;
     max?: number;
