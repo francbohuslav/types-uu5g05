@@ -15,8 +15,22 @@ declare module "uu5tilesg02-elements" {
     }>
   >;
 
-  namespace Table {
-    const HeaderCell: UU5.TComponent<
+  const Table: UU5.TComponent<
+    UU5.TDefaultProps<{
+      view?: "table" | "grid";
+      spacing?: "tight" | "normal" | "loose";
+      verticalAlignment?: string;
+      columnList?: any;
+      rowHeight?: number;
+      virtualization?: boolean;
+      getActionList?: (params: { rowIndex: number; data: any }) => UU5Elements.TActionListItem[];
+      emptyState?: React.ReactNode;
+      onLoad: (opts: { count: number; indexFrom: number }) => void;
+      cellHoverExtent?: any;
+      cellActiveExtent?: any;
+    }>
+  > & {
+    HeaderCell: UU5.TComponent<
       UU5.TDefaultProps<{
         sorterKey?: string;
         filterKey?: string;
@@ -25,7 +39,7 @@ declare module "uu5tilesg02-elements" {
       }>
     >;
 
-    const Cell: UU5.TComponent<
+    Cell: UU5.TComponent<
       UU5.TDefaultProps<{
         type?: "select" | "drag" | "actionList";
         colorScheme?: string;
@@ -33,7 +47,7 @@ declare module "uu5tilesg02-elements" {
         onClick?: (params: any) => void;
       }>
     >;
-  }
+  };
 }
 
 declare namespace Uu5TilesElementsOld {

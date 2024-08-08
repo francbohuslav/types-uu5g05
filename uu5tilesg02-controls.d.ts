@@ -58,6 +58,16 @@ declare module "uu5tilesg02-controls" {
       width?: any;
     }>
   >;
+
+  const Counter: UU5.TComponent<
+    UU5.TDefaultProps<{
+      pageIndex?: number;
+      itemList?: any[];
+      displayShowing?: boolean;
+      displayTotal?: boolean;
+      displayResults?: boolean;
+    }>
+  >;
 }
 
 declare namespace Uu5TilesControlsOld {
@@ -65,29 +75,7 @@ declare namespace Uu5TilesControlsOld {
     padding?: any;
   }
   function BulkActionBar(props: BulkActionBar$Props): any;
-  interface Counter$Props {
-    pageIndex?: number;
-    itemList?: any[];
-    displayShowing?: boolean;
-    displayTotal?: boolean;
-    displayResults?: boolean;
-  }
-  function Counter(props: Counter$Props): any;
-  interface FilterBar$Props {
-    initialExpanded?: boolean;
-    readOnly?: boolean;
-    filterKeyList?: string[];
-    displayClearButton?: boolean;
-    displayManagerButton?: boolean;
-    displayCloseButton?: boolean;
-    padding?: any;
-  }
-  function FilterBar(props: FilterBar$Props): any;
 
-  namespace FormFilterManager {
-    const Input: any;
-    const name: "filterList";
-  }
   interface FormInitialPresetManager$Props {
     value?: string;
     onChange?(...args: any): any;

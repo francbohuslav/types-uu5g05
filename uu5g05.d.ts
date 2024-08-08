@@ -67,6 +67,14 @@ declare module "uu5g05" {
   const Content: any;
   const RouteProvider: React.FC<React.PropsWithChildren<{}>>;
   const SessionProvider: React.FC<React.PropsWithChildren<{ authenticationService: any }>>;
+
+  const LanguageProvider: React.FC<
+    React.PropsWithChildren<{
+      initialLanguage: string;
+      onChange?: (options: { language: string }) => void;
+    }>
+  >;
+
   const ErrorBoundary: React.FC<
     React.PropsWithChildren<{
       fallback: (params: { error: Error }) => React.ReactNode;

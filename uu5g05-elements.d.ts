@@ -15,9 +15,7 @@ declare module "uu5g05-elements" {
     }>
   >;
 
-  const ModalBus: UU5.TComponent<
-    UU5.TDefaultProps<any>
-  >;
+  const ModalBus: UU5.TComponent<UU5.TDefaultProps<any>>;
 
   interface ButtonProps {
     onClick?(): void;
@@ -68,7 +66,11 @@ declare module "uu5g05-elements" {
   interface DrawerProps {
     open?: boolean;
     onClose?: () => void;
-    type?: "elevated" | "flat" | "collapsible";
+    type?:
+      | "elevated"
+      | "flat"
+      | "collapsible"
+      | Record<UU5.TSize, "elevated" | "flat" | "collapsible">;
     height?: number | string;
     fullHeight?: boolean;
     offsetTop?: number;
@@ -325,11 +327,11 @@ declare module "uu5g05-elements" {
 
   const MenuList: UU5.TComponent<
     UU5.TDefaultProps<{
-      itemList: {
-        children?: React.ReactNode;
-        onClick?(): void;
-        testId?: string;
-      }[];
+      itemList: UU5Elements.TMenuListItem[];
+      compactSubmenu?: boolean;
+      maxHeight?: string;
+      value?: string[] | number[];
+      onChange?(event: UU5.TDataEvent<string[] | number[]>): any;
     }>
   >;
 
@@ -544,6 +546,30 @@ declare module "uu5g05-elements" {
         tooltip?: string;
         itemList?: (UU5Elements.TActionListItem | { divider: true })[];
         onClick?: () => void;
+      }
+
+      interface TMenuItem {
+        children?: React.ReactNode;
+        onClick?: () => void;
+        icon?: string;
+        iconNotification?: boolean;
+        iconRight?: boolean | string;
+        heading?: boolean;
+        actionList?: TActionListItem[];
+        size?: UU5.TSize;
+        hoverable?: boolean;
+        focused?: boolean;
+        itemList?: TMenuItem[];
+        href?: string;
+        target?: string;
+      }
+
+      interface TMenuListItem extends TMenuItem {
+        divider?: boolean;
+        itemList?: TMenuListItem[];
+        collapsible?: boolean | "tree";
+        initialCollapsed?: boolean;
+        component?: React.ReactNode;
       }
     }
     namespace UUGds {
