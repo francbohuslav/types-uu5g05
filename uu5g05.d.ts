@@ -48,16 +48,16 @@ declare module "uu5g05" {
   function useContext<T>(context: React.Context<T>): T;
   function useContentSizeValue<T>(map: Partial<Record<UU5.TSize, T>>): T;
   function useElementSize<T>(): UU5.TElementSize<T>;
-  function useSession(): UU5.ISession;
+  function useSession(): UU5.TSession;
   function useTimeZone(): any;
   function useBackground(): string;
   function useUserPreferences(): [
-    UU5.IUserPreferences,
-    (newPreferences: UU5.IUserPreferences) => void
+    UU5.TUserPreferences,
+    (newPreferences: UU5.TUserPreferences) => void
   ];
-  function useRouteLeave(params?: { initialPrevented: boolean }): UU5.IUseRouteLeave;
+  function useRouteLeave(params?: { initialPrevented: boolean }): UU5.TUseRouteLeave;
   function useRoute(): [
-    UU5.IRoute,
+    UU5.TRoute,
     (useCase: string, params?: Record<string, any>, options?: any) => void
   ];
 
@@ -128,6 +128,10 @@ declare module "uu5g05" {
 
     namespace Lsi {
       function getMessage(lsi: UU5.TLsi, language: string): string;
+      function getMessage<TLsiStructure>(
+        importAndPath: { import: UU5.TLsiImport<TLsiStructure>; path: string[] },
+        language: string
+      ): string;
       function setDefaultLsi(library: string, lsi: any): void;
     }
 
@@ -320,7 +324,7 @@ declare module "uu5g05" {
         height: number;
       }
 
-      interface IIdentity {
+      interface TIdentity {
         name: string;
         uuIdentity: string;
         accountType: any;
@@ -361,8 +365,8 @@ declare module "uu5g05" {
         errorData: any;
       }
 
-      interface ISession {
-        identity: IIdentity;
+      interface TSession {
+        identity: TIdentity;
         state: "authenticated" | "notAuthenticated";
         login: () => void;
         logout: () => void;
@@ -387,7 +391,7 @@ declare module "uu5g05" {
         total: number;
       }
 
-      interface IUserPreferences {
+      interface TUserPreferences {
         /** "CZK" */
         currency: string;
         /** "," */
@@ -414,19 +418,23 @@ declare module "uu5g05" {
         weekStartDay: number;
       }
 
-      interface IUseRouteLeave {
+      interface TUseRouteLeave {
         nextRoute: any;
         refuse: () => void;
         allow: () => void;
         prevent: () => void;
       }
 
-      interface IRoute {
+      interface TRoute {
         component: any;
         params: any;
         prevRoute: string;
         uu5Route: string;
       }
+
+      type TLsiImport<TLsiStructure> = ((lang: string) => Promise<TLsiStructure>) & {
+        libraryCode: string | undefined;
+      };
     }
   }
 }
