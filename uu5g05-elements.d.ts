@@ -562,6 +562,7 @@ declare module "uu5g05-elements" {
         itemList?: TMenuItem[];
         href?: string;
         target?: string;
+        testId?: string;
       }
 
       interface TMenuListItem extends TMenuItem {

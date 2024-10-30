@@ -90,6 +90,8 @@ declare module "uu5tilesg02" {
         required?: boolean;
         inputProps?: Record<string, any>;
         valueFormatter?: (value: any) => React.ReactNode;
+        multiple?: boolean;
+        itemList?: { value: any; children?: any }[];
       }
 
       interface TDataEvent<T> {

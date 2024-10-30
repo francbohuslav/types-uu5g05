@@ -367,7 +367,7 @@ declare module "uu5g05" {
 
       interface TSession {
         identity: TIdentity;
-        state: "authenticated" | "notAuthenticated";
+        state: "authenticated" | "notAuthenticated" | "pending";
         login: () => void;
         logout: () => void;
         isExpiring: boolean;
