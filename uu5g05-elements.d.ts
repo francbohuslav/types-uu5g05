@@ -18,7 +18,7 @@ declare module "uu5g05-elements" {
   const ModalBus: UU5.TComponent<UU5.TDefaultProps<any>>;
 
   interface ButtonProps {
-    onClick?(): void;
+    onClick?(event: Event): void;
     iconNotification?: boolean;
     iconRight?: any;
     type?: "button" | "submit" | "reset";
