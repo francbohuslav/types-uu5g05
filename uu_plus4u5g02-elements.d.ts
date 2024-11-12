@@ -16,8 +16,9 @@ declare module "uu_plus4u5g02-elements" {
     }>
   >;
 
-  const Error: ErrorComponent;
+  const Unauthenticated: UU5.TComponent<UU5.TDefaultProps<{}>>;
 
+  const Error: ErrorComponent;
   const UnexpectedError: ErrorComponent;
 }
 

@@ -45,6 +45,7 @@ declare module "uu5g05" {
   function useLsi<T>(lsi: (lang: string) => Promise<T>, path: string[]): T;
   function useLsiValues<T>(lsiStruct: T): Record<keyof T, string>;
   function useLanguage(): [string];
+  function useLanguageList(): [string[], (newValue: string[]) => void];
   function useContext<T>(context: React.Context<T>): T;
   function useContentSizeValue<T>(map: Partial<Record<UU5.TSize, T>>): T;
   function useElementSize<T>(): UU5.TElementSize<T>;
@@ -66,7 +67,10 @@ declare module "uu5g05" {
   const Fragment: any;
   const Content: any;
   const RouteProvider: React.FC<React.PropsWithChildren<{}>>;
-  const SessionProvider: React.FC<React.PropsWithChildren<{ authenticationService: any }>>;
+  const SessionProvider: React.FC<{
+    authenticationService: any;
+    children: React.ReactNode | ((props: { state: string }) => React.ReactNode);
+  }>;
 
   const LanguageProvider: React.FC<
     React.PropsWithChildren<{
