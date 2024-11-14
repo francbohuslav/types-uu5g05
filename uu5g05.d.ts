@@ -91,8 +91,20 @@ declare module "uu5g05" {
   >;
   const Lsi: UU5.TComponent<
     UU5.TBaseProps<{
-      lsi: UU5.TLsi | string;
+      lsi?: UU5.TLsi | string;
       params?: any[] | Record<string, any>;
+      import?: {
+        (lang: string): Promise<any>;
+        libraryCode?: string;
+      };
+      path?: string[];
+    }>
+  >;
+
+  const DynamicLibraryComponent: React.FC<
+    UU5.TBaseProps<{
+      uu5Tag: string;
+      [key: string]: any;
     }>
   >;
 
@@ -191,6 +203,10 @@ declare module "uu5g05" {
       ): void;
 
       function lazy(func: () => any): any;
+    }
+
+    namespace Style {
+      function getMinMediaQueries(...attrs: any[]): any;
     }
 
     class Event {
