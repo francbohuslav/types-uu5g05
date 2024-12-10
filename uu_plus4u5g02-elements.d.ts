@@ -1,6 +1,8 @@
 declare module "uu_plus4u5g02-elements" {
   const ContentContainer: UU5.TComponent<
-    UU5.TDefaultProps<Plus4U5ElementsTypes.ContentContainerProps>
+    UU5.TDefaultProps<Plus4U5ElementsTypes.ContentContainerProps> & {
+      children: (opt: Plus4U5ElementsTypes.ContentContainerChildrenParams) => React.ReactNode;
+    }
   >;
 
   const IdentificationBlock: UU5.TComponent<
@@ -20,20 +22,29 @@ declare module "uu_plus4u5g02-elements" {
         header?: string;
         card?: any;
         headerSeparator?: boolean;
-        actionList: UU5Elements.TActionListItem[];
-        info: any;
+        actionList?: UU5Elements.TActionListItem[];
+        info?: any;
         displayType?: string;
       }
 
       interface ContentContainerProps extends IdentificationBlockProps {
-        title: React.ReactNode;
-        subtitle: React.ReactNode;
+        title?: React.ReactNode;
+        subtitle?: React.ReactNode;
+        nestingLevelList?: UU5.TNestingLevel[];
         displayAsModal?: boolean;
-        info: any;
         icon?: UUGds.GdsIcon;
-        nestingLevelList: UU5.TNestingLevel[];
         onClose?: (event: Event) => void;
-        getCopyOptions: () => any;
+        getCopyOptions?: () => any;
+      }
+
+      interface ContentContainerChildrenParams {
+        nestingLevel: UU5.TNestingLevel;
+        style: {
+          paddingTop: string;
+          paddingBottom: string;
+          paddingLeft: string;
+          paddingRight: string;
+        };
       }
     }
   }

@@ -40,7 +40,7 @@ declare module "uu5tilesg02" {
           | ((cellProps: any, indexes: { rowIndex: number; cellIndex: number }) => React.ReactNode);
         cellComponent?: (
           cellProps: any,
-          indexes: { rowIndex: number; colIndex: number }
+          indexes: { rowIndex: number; columnIndex: number }
         ) => React.ReactNode;
         sticky?: "left" | "right";
         type?: "select" | "drag" | "actionList";

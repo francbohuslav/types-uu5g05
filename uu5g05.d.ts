@@ -209,6 +209,15 @@ declare module "uu5g05" {
       function getMinMediaQueries(...attrs: any[]): any;
     }
 
+    namespace LibraryRegistry {
+      function registerLibrary(params: { name?: string; version?: string; namespace?: string }): any;
+      function listLibraries(): any;
+      function getLibrary(...params: any[]): Promise<any>;
+      function importLibrary(namespaceWithMaybeVersion: any): any;
+      function registerComponent(Component: any): any;
+      function getComponentByUu5Tag(uu5Tag: string): any;
+    }
+
     class Event {
       constructor(data: any, event?: any);
     }

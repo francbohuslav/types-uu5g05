@@ -119,7 +119,7 @@ declare module "uu_excelexporterg01" {
             alignment: any;
             border: any;
             font: any;
-            numFmt: string;
+            numFmt: string | undefined;
             worksheet: WorkSheet;
           }
         }
