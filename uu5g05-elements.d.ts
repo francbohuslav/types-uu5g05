@@ -395,6 +395,29 @@ declare module "uu5g05-elements" {
     >;
   };
 
+  const Tabs: UU5.TComponent<
+    UU5.TDefaultProps<{
+      type?: "card-outer" | "card-inner" | "line";
+      itemList?: {
+        label: React.ReactNode;
+        children: React.ReactNode;
+        code: string;
+        icon?: UUGds.GdsIcon;
+        iconAnimation?: "rotate" | "none";
+        onClick?: () => void;
+      }[];
+      activeCode?: string;
+      actionList?: UU5Elements.TActionGroupItem[];
+      onChange?: (event: UU5.TDataEvent<{ activeCode: string }>) => void;
+      size?: "s" | "m";
+      displayScrollButtons?: boolean;
+      block?: boolean;
+      contentMaxHeight?: any;
+      displayBottomLine?: boolean;
+      justified?: boolean;
+    }>
+  >;
+
   const SpacingProvider: UU5.TComponent<{ type: "tight" | "normal" | "loose" }>;
 
   function useAlertBus(): { addAlert: (message: any, durationMs?: number, priority?: any) => void };

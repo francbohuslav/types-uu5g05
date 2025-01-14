@@ -12,7 +12,7 @@
     "check": "tsc"
   },
   "types": "index.d.ts",
-  "version": "1.0.23",
+  "version": "1.0.27",
   "devDependencies": {
     "typescript": "^5.3.3"
   },
