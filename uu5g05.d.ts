@@ -71,6 +71,7 @@ declare module "uu5g05" {
     authenticationService: any;
     children: React.ReactNode | ((props: { state: string }) => React.ReactNode);
   }>;
+  const Suspense: React.FC<React.PropsWithChildren<{ fallback: React.ReactNode }>>;
 
   const LanguageProvider: React.FC<
     React.PropsWithChildren<{
@@ -210,7 +211,11 @@ declare module "uu5g05" {
     }
 
     namespace LibraryRegistry {
-      function registerLibrary(params: { name?: string; version?: string; namespace?: string }): any;
+      function registerLibrary(params: {
+        name?: string;
+        version?: string;
+        namespace?: string;
+      }): any;
       function listLibraries(): any;
       function getLibrary(...params: any[]): Promise<any>;
       function importLibrary(namespaceWithMaybeVersion: any): any;
@@ -221,6 +226,8 @@ declare module "uu5g05" {
     class Event {
       constructor(data: any, event?: any);
     }
+
+    const Uu5Loader: any;
   }
 
   global {
