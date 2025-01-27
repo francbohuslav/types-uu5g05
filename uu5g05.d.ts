@@ -223,6 +223,12 @@ declare module "uu5g05" {
       function getComponentByUu5Tag(uu5Tag: string): any;
     }
 
+    namespace Language {
+      function getItem(lsi: UU5.TLsi, language?: string): string;
+      function getLanguage(): string;
+      function setLanguage(language: string): void;
+    }
+
     class Event {
       constructor(data: any, event?: any);
     }
