@@ -586,6 +586,8 @@ declare module "uu5g05-elements" {
         href?: string;
         target?: string;
         testId?: string;
+        significance?: TSignificance;
+        colorScheme?: string;
       }
 
       interface TMenuListItem extends TMenuItem {
