@@ -90,6 +90,14 @@ declare module "uu5g05" {
       background: "light" | "soft" | "full" | "dark";
     }>
   >;
+
+  const TimeZoneProvider: React.FC<
+    React.PropsWithChildren<{
+      timeZone?: string;
+      onChange?: (timeZone: string) => void;
+    }>
+  >;
+
   const Lsi: UU5.TComponent<
     UU5.TBaseProps<{
       lsi?: UU5.TLsi | string;
