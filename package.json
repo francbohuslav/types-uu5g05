@@ -12,11 +12,8 @@
     "check": "tsc"
   },
   "types": "index.d.ts",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "devDependencies": {
     "typescript": "^5.3.3"
-  },
-  "publishConfig": {
-    "registry": "https://repo.plus4u.net/repository/uu_tsstoreg01-javascript-repo/"
   }
 }

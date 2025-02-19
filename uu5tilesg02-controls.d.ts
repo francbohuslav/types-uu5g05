@@ -8,6 +8,11 @@ declare module "uu5tilesg02-controls" {
       displayManagerButton?: boolean;
       displayCloseButton?: boolean;
       padding?: any;
+      fixedOrder?: boolean;
+      filterKeyListDisplayMode?: "default" | "definedOnly";
+      type?: "default" | "readOnly" | "input";
+      actionList?: UU5Elements.TActionGroupItem[];
+      applyEvent?: "onChange" | "onSubmit";
     }>
   >;
 

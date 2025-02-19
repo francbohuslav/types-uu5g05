@@ -567,6 +567,7 @@ declare module "uu5g05-elements" {
         collapsedIcon?: UUGds.GdsIcon;
         collapsed?: boolean | string;
         tooltip?: string;
+        disabled?: boolean;
         itemList?: (UU5Elements.TActionListItem | { divider: true })[];
         onClick?: () => void;
       }
