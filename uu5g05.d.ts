@@ -12,18 +12,13 @@ declare module "uu5g05" {
   ): UU5.TComponent<Props & { ref?: React.Ref<Interface> }>;
 
   function useRef<T>(initial?: T): React.MutableRefObject<T>;
-
   function useState<T>(initial: T | (() => T)): [T, (newValue: T | ((prev: T) => T)) => void];
-
   function useMemo<T>(method: () => T, dep?: any[]): T;
-
   function useMemoObject<T>(obj: T, equals?: (a: T, b: T) => boolean): T;
-
   function useEffect(effect: React.EffectCallback, deps?: any[]): void;
-
   function useCallback<T extends Function>(callback: T, deps?: any[]): T;
-
   function useImperativeHandle<T>(ref: React.Ref<T>, init: () => T, deps?: any[]): void;
+  function usePreviousValue<T>(currentValue: T, initialValue?: T): T;
 
   function useDataObject<T>(
     options: {
@@ -56,6 +51,7 @@ declare module "uu5g05" {
     UU5.TUserPreferences,
     (newPreferences: UU5.TUserPreferences) => void
   ];
+
   function useRouteLeave(params?: { initialPrevented: boolean }): UU5.TUseRouteLeave;
   function useRoute(): [
     UU5.TRoute,
