@@ -335,6 +335,8 @@ declare module "uu5g05-elements" {
     }>
   >;
 
+  const MenuItem: UU5.TComponent<UU5.TDefaultProps<UU5Elements.TMenuItem>>;
+
   const Badge: UU5.TComponent<
     UU5.TDefaultProps<{
       size?: UU5.TSize;
@@ -589,6 +591,7 @@ declare module "uu5g05-elements" {
         testId?: string;
         significance?: TSignificance;
         colorScheme?: string;
+        tooltip?: string;
       }
 
       interface TMenuListItem extends TMenuItem {
