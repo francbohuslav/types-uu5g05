@@ -66,6 +66,7 @@ declare module "uu_excelexporterg01" {
             name: string;
             columnList: Column[];
             preprocess?: (sheet: Data.WorkSheet) => void;
+            postprocess?: (sheet: Data.WorkSheet) => void;
             data?: (chunkIndex: number) => Promise<CallResponse | undefined>;
             rowRenderer?: (
               dataRow: any[],
