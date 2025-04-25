@@ -10,6 +10,10 @@ declare module "uu5g05-forms" {
   interface TextProps {
     pattern?: string;
     patternMessage?: React.ReactNode;
+    minLength?: number;
+    maxLength?: number;
+    spellCheck?: boolean;
+    autoComplete?: string | boolean;
   }
   const Text: UU5Forms.TComponent<TextProps, string> & {
     Input: UU5Forms.TComponent<any, string>;
