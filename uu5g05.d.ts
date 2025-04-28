@@ -238,6 +238,15 @@ declare module "uu5g05" {
     }
 
     const Uu5Loader: any;
+
+    namespace ScreenSize {
+      function countSize(width?: number): UU5.TSize;
+      function getSize(): UU5.TSize;
+      function parseValue(propValue: string): any;
+      function convertStringToObject(propValue: string): any;
+      function convertObjectToString(propValue: any): string;
+      function getSizeValue(sizeOf: any, size: any, sizeList?: UU5.TSize[]): string;
+    }
   }
 
   global {
