@@ -88,6 +88,7 @@ declare module "uu5tilesg02" {
         label: UU5.TLsi | string;
         inputType?: string | React.ReactNode | (() => React.ReactNode);
         required?: boolean;
+        readOnly?: boolean;
         inputProps?: Record<string, any>;
         valueFormatter?: (value: any) => React.ReactNode;
         multiple?: boolean;
