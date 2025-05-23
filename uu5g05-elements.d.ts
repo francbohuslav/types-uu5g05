@@ -231,18 +231,19 @@ declare module "uu5g05-elements" {
       height?: any;
     }>
   >;
-  const HighlightedBox: UU5.TComponent<
-    UU5.TDefaultProps<{
-      colorScheme?: any;
-      significance?: UU5Elements.TSignificance;
-      borderRadius?: any;
-      icon?: any;
-      onClose?(...args: any): any;
-      controlList?: any[];
-      controlPosition?: "right" | "bottom";
-      overlay?: boolean;
-    }>
-  >;
+  interface HighlightedBoxProps {
+    colorScheme?: any;
+    significance?: UU5Elements.TSignificance;
+    borderRadius?: any;
+    icon?: any;
+    onClose?(event: Event): void;
+    controlList?: any[];
+    controlPosition?: "right" | "bottom";
+    overlay?: boolean;
+  }
+
+  const HighlightedBox: UU5.TComponent<UU5.TDefaultProps<HighlightedBoxProps>>;
+
   const Text: UU5.TComponent<UU5.TDefaultProps<Text$Props & { colorScheme?: string }>>;
   const Header: UU5.TComponent<
     UU5.TDefaultProps<{
@@ -321,16 +322,13 @@ declare module "uu5g05-elements" {
     }>
   >;
 
-  const Alert: UU5.TComponent<
-    UU5.TDefaultProps<{
-      message?: React.ReactNode | UU5.TLsi;
-      header?: React.ReactNode | UU5.TLsi;
-      priority?: string;
-      icon?: string;
-      durationMs?: number;
-      onClose?(event: Event): void;
-    }>
-  >;
+  const Alert: UU5.TComponent<UU5.TDefaultProps<UU5Elements.TAlertProps>>;
+
+  function useAlertBus(): {
+    addAlert(props: Omit<UU5Elements.TAlertProps, "onClose">): string;
+    updateAlert(alertId: string, props: Omit<UU5Elements.TAlertProps, "onClose">): void;
+    removeAlert(alertId: string): void;
+  };
 
   const MenuList: UU5.TComponent<
     UU5.TDefaultProps<{
@@ -428,8 +426,6 @@ declare module "uu5g05-elements" {
   >;
 
   const SpacingProvider: UU5.TComponent<{ type: "tight" | "normal" | "loose" }>;
-
-  function useAlertBus(): { addAlert: (message: any, durationMs?: number, priority?: any) => void };
 
   function useSpacing(): {
     a: number;
@@ -607,6 +603,13 @@ declare module "uu5g05-elements" {
         collapsible?: boolean | "tree";
         initialCollapsed?: boolean;
         component?: React.ReactNode;
+      }
+
+      interface TAlertProps extends HighlightedBoxProps {
+        message?: React.ReactNode | UU5.TLsi;
+        header?: React.ReactNode | UU5.TLsi;
+        priority?: string;
+        durationMs?: number;
       }
     }
     namespace UUGds {

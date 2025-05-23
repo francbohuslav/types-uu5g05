@@ -6,7 +6,9 @@ declare module "uu_plus4u5g02-elements" {
   >;
 
   const IdentificationBlock: UU5.TComponent<
-    UU5.TDefaultProps<Plus4U5ElementsTypes.IdentificationBlockProps>
+    UU5.TDefaultProps<Plus4U5ElementsTypes.IdentificationBlockProps> & {
+      children: (opt: Plus4U5ElementsTypes.IdentificationBlockChildrenParams) => React.ReactNode;
+    }
   >;
 
   const Unauthenticated: UU5.TComponent<UU5.TDefaultProps<{}>>;
@@ -24,7 +26,17 @@ declare module "uu_plus4u5g02-elements" {
         headerSeparator?: boolean;
         actionList?: UU5Elements.TActionListItem[];
         info?: any;
+        displayHelpCenter?: boolean;
         displayType?: string;
+      }
+
+      interface IdentificationBlockChildrenParams {
+        style: {
+          paddingTop: string;
+          paddingBottom: string;
+          paddingLeft: string;
+          paddingRight: string;
+        };
       }
 
       interface ContentContainerProps extends IdentificationBlockProps {
@@ -37,14 +49,8 @@ declare module "uu_plus4u5g02-elements" {
         getCopyOptions?: () => any;
       }
 
-      interface ContentContainerChildrenParams {
+      interface ContentContainerChildrenParams extends IdentificationBlockChildrenParams {
         nestingLevel: UU5.TNestingLevel;
-        style: {
-          paddingTop: string;
-          paddingBottom: string;
-          paddingLeft: string;
-          paddingRight: string;
-        };
       }
     }
   }
