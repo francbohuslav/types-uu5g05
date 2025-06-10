@@ -12,6 +12,7 @@ declare module "uu5g05-elements" {
       closeOnOverlayClick?: boolean;
       footer?: any;
       width?: number | string;
+      actionList?: UU5Elements.TActionListItem[];
     }>
   >;
 
