@@ -94,6 +94,8 @@ declare module "uu5g05" {
     }>
   >;
 
+  const UserPreferencesProvider: any;
+
   const Lsi: UU5.TComponent<
     UU5.TBaseProps<{
       lsi?: UU5.TLsi | string;

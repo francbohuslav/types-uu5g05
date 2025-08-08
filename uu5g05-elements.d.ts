@@ -220,6 +220,7 @@ declare module "uu5g05-elements" {
       hourFormat?: 11 | 12 | 24;
       format?: string;
       timeZone?: string;
+      midnightValue?: number;
     }>
   >;
   const Dialog: UU5.TComponent<UU5.TDefaultProps<any>>;

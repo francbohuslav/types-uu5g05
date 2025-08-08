@@ -80,6 +80,7 @@ declare module "uu5g05-forms" {
     max?: string;
     step?: number;
     presetList?: string[];
+    midnightValue?: number;
   }
   const DateTime: UU5Forms.TComponent<DateTimeProps, string | undefined>;
   const FormDateTime: UU5Forms.TFormComponent<DateTimeProps, string | undefined>;
