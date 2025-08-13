@@ -111,7 +111,9 @@ declare module "uu5g05-forms" {
 
   const Form: UU5.TComponent<FormProps> & {
     Provider: React.FC<
-      FormProps & { children: JSX.Element | JSX.Element[] | ((opt: { value: any }) => JSX.Element) }
+      FormProps & {
+        children: JSX.Element | JSX.Element[] | ((opt: UU5Forms.TFormApi<any>) => JSX.Element);
+      }
     >;
     View: UU5.TComponent<{ gridLayout?: string }>;
   };
