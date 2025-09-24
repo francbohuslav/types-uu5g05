@@ -31,13 +31,13 @@ declare module "uu5tilesg02" {
         maxWidth?: string | number;
         header?:
           | React.ReactNode
-          | ((cellProps: any, indexes: { rowIndex: number; cellIndex: number }) => React.ReactNode);
+          | ((cellProps: any, indexes: { rowIndex: number; columnIndex: number }) => React.ReactNode);
         headerComponent?:
           | React.ReactNode
-          | ((cellProps: any, indexes: { rowIndex: number; cellIndex: number }) => React.ReactNode);
+          | ((cellProps: any, indexes: { rowIndex: number; columnIndex: number }) => React.ReactNode);
         cell?:
           | React.ReactNode
-          | ((cellProps: any, indexes: { rowIndex: number; cellIndex: number }) => React.ReactNode);
+          | ((cellProps: any, indexes: { rowIndex: number; columnIndex: number }) => React.ReactNode);
         cellComponent?: (
           cellProps: any,
           indexes: { rowIndex: number; columnIndex: number }

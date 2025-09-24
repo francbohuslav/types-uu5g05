@@ -93,6 +93,15 @@ declare module "uu5g05-forms" {
   const Date: UU5Forms.TComponent<DateProps, string | undefined>;
   const FormDate: UU5Forms.TFormComponent<DateProps, string | undefined>;
 
+  const Week: UU5Forms.TComponent<{}, string | undefined>;
+  const FormWeek: UU5Forms.TFormComponent<{}, string | undefined>;
+
+  const Month: UU5Forms.TComponent<{}, string | undefined>;
+  const FormMonth: UU5Forms.TFormComponent<{}, string | undefined>;
+
+  const Year: UU5Forms.TComponent<{}, string | undefined>;
+  const FormYear: UU5Forms.TFormComponent<{}, string | undefined>;
+
   const File: UU5Forms.TComponent<{ multiple?: boolean }, number>;
   const FormFile: UU5Forms.TFormComponent<{ multiple?: boolean }, number>;
 
