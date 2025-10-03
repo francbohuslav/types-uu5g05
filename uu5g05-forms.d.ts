@@ -124,7 +124,7 @@ declare module "uu5g05-forms" {
         children: JSX.Element | JSX.Element[] | ((opt: UU5Forms.TFormApi<any>) => JSX.Element);
       }
     >;
-    View: UU5.TComponent<{ gridLayout?: string }>;
+    View: UU5.TComponent<{ gridLayout?: string, lsi?: any }>;
   };
 
   global {

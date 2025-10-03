@@ -45,6 +45,7 @@ declare module "uu5tilesg02-elements" {
         colorScheme?: string;
         significance?: UU5Elements.TSignificance;
         onClick?: (params: any) => void;
+        alternative?: boolean;
       }>
     >;
   };

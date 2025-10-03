@@ -31,6 +31,7 @@ declare module "uu5g05-elements" {
     width?: any;
     pressed?: boolean;
     icon?: string | UUGds.GdsIcon | React.ReactNode;
+    iconAnimation?: "rotate" | "none";
     collapsedIcon?: string | UUGds.GdsIcon | React.ReactNode;
     disabled?: boolean;
     tooltip?: React.ReactNode | UU5.TLsi;
@@ -186,19 +187,7 @@ declare module "uu5g05-elements" {
       focused?: boolean;
     }>
   >;
-  const Link: UU5.TComponent<
-    UU5.TDefaultProps<{
-      onClick?(...args: any): any;
-      href?: string;
-      target?: string;
-      download?: boolean | string;
-      colorScheme?: any | any;
-      significance?: any;
-      size?: UU5.TSize;
-      disabled?: boolean;
-      tooltip?: string | UU5.TLsi;
-    }>
-  >;
+  const Link: UU5.TComponent<UU5.TDefaultProps<UU5Elements.TLinkProps>>;
   const Dropdown: UU5.TComponent<
     UU5.TDefaultProps<{
       label?: any;
@@ -353,6 +342,18 @@ declare module "uu5g05-elements" {
     }>
   >;
 
+  const InfoItem: UU5.TComponent<UU5.TDefaultProps<UU5Elements.TIinfoItemProps>>;
+
+  const InfoGroup: UU5.TComponent<
+    UU5.TDefaultProps<{
+      itemList: UU5Elements.TIinfoItemProps[];
+      size?: UU5.TSize;
+      direction?: "vertical" | "horizontal";
+      autoResize?: boolean;
+      itemDirection?: "vertical" | "horizontal" | "vertical-reverse";
+    }>
+  >;
+
   const ContextCenterButton: UU5.TComponent<
     UU5.TDefaultProps<{
       info: UU5Elements.TContextCenterInfoItem[];
@@ -424,6 +425,12 @@ declare module "uu5g05-elements" {
       contentMaxHeight?: any;
       displayBottomLine?: boolean;
       justified?: boolean;
+    }>
+  >;
+
+  const Breadcrumbs: UU5.TComponent<
+    UU5.TDefaultProps<{
+      itemList: (Text$Props | UU5Elements.TLinkProps)[];
     }>
   >;
 
@@ -613,6 +620,29 @@ declare module "uu5g05-elements" {
         priority?: string;
         durationMs?: number;
       }
+
+      type TIinfoItemProps = UU5.TBaseProps<{
+        icon?: UUGds.GdsIcon;
+        iconText?: string;
+        imageSrc?: string;
+        title?: string;
+        subtitle?: string;
+        size?: UU5.TSize;
+        direction?: "vertical" | "horizontal" | "vertical-full" | "vertical-reverse";
+        onClick?: () => void;
+      }>;
+
+      type TLinkProps = UU5.TBaseProps<{
+        onClick?(...args: any): any;
+        href?: string;
+        target?: string;
+        download?: boolean | string;
+        colorScheme?: any | any;
+        significance?: any;
+        size?: UU5.TSize;
+        disabled?: boolean;
+        tooltip?: string | UU5.TLsi;
+      }>;
     }
     namespace UUGds {
       // Definition https://cdn.plus4u.net/uu-gds-svgg01/1.0.0/assets/stencil-map.json
