@@ -32,6 +32,28 @@ declare module "uu5g05-forms" {
   };
   const FormTextSelect: UU5Forms.TFormComponent<TextSelectProps, string>;
 
+  type ColorValue =
+    | string
+    | {
+        cssColor: string;
+        hex: string;
+        colorScheme: string;
+        shade: string;
+        opacity: number;
+      };
+  interface ColorProps {
+    iconOpen?: string;
+    iconClosed?: string;
+    valueType?: "cssColor" | "object" | "colorScheme";
+    displayShade?: boolean;
+    displayOpacity?: boolean;
+    displayCustomColor?: boolean;
+  }
+  const Color: UU5Forms.TComponent<ColorProps, ColorValue> & {
+    Input: UU5Forms.TComponent<ColorProps, ColorValue>;
+  };
+  const FormColor: UU5Forms.TFormComponent<ColorProps, ColorValue>;
+
   interface SwitchSelectProps {
     itemList: { value: string; children?: React.ReactNode }[];
   }
@@ -124,7 +146,7 @@ declare module "uu5g05-forms" {
         children: JSX.Element | JSX.Element[] | ((opt: UU5Forms.TFormApi<any>) => JSX.Element);
       }
     >;
-    View: UU5.TComponent<{ gridLayout?: string, lsi?: any }>;
+    View: UU5.TComponent<{ gridLayout?: string; lsi?: any }>;
   };
 
   global {
@@ -179,8 +201,6 @@ declare module "uu5g05-forms" {
         borderRadius?: any;
         autoFocus?: boolean;
         size?: UU5.TSize;
-        elementRef?: React.MutableRefObject<any>;
-        elementAttrs?: Record<string, any>;
         colorScheme?: string;
         significance?: UU5Elements.TSignificance;
       }

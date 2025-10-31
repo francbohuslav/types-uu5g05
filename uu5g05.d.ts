@@ -261,6 +261,8 @@ declare module "uu5g05" {
         children?: React.ReactNode;
         testId?: string;
         nestingLevel?: TNestingLevel;
+        elementRef?: React.MutableRefObject<any>;
+        elementAttrs?: Record<string, any>;
       };
 
       /** Type for defaultProps of component */

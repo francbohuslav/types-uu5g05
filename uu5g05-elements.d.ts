@@ -235,7 +235,15 @@ declare module "uu5g05-elements" {
 
   const HighlightedBox: UU5.TComponent<UU5.TDefaultProps<HighlightedBoxProps>>;
 
-  const Text: UU5.TComponent<UU5.TDefaultProps<Text$Props & { colorScheme?: string }>>;
+  const Text: UU5.TComponent<
+    UU5.TDefaultProps<
+      Text$Props & {
+        colorScheme?: string;
+        significance?: UU5Elements.TSignificance;
+        tooltip?: UU5.TLsi | React.ReactNode;
+      }
+    >
+  >;
   const Header: UU5.TComponent<
     UU5.TDefaultProps<{
       icon?: any | string;
@@ -431,6 +439,28 @@ declare module "uu5g05-elements" {
   const Breadcrumbs: UU5.TComponent<
     UU5.TDefaultProps<{
       itemList: (Text$Props | UU5Elements.TLinkProps)[];
+    }>
+  >;
+
+  const Tile: UU5.TComponent<
+    UU5.TDefaultProps<{
+      actionList?: UU5Elements.TActionGroupItem[];
+      actionCollapsedMenuProps?: any;
+      displayActionList?: boolean;
+      header?: React.ReactNode;
+      headerOverlap?: boolean;
+      headerSignificance?: Extract<UU5Elements.TSignificance, "common" | "highlighted">;
+      headerColorScheme?: string;
+      headerSeparator?: boolean;
+      headerHorizontalAlignment?: "start" | "center" | "end";
+      footer?: React.ReactNode;
+      footerOverlap?: boolean;
+      colorScheme?: string;
+      significance?: UU5Elements.TSignificance;
+      footerSignificance?: Extract<UU5Elements.TSignificance, "common" | "highlighted">;
+      footerColorScheme?: string;
+      footerSeparator?: boolean;
+      footerHorizontalAlignment?: "start" | "center" | "end";
     }>
   >;
 
