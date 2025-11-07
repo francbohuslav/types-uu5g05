@@ -582,7 +582,10 @@ declare module "uu5g05-elements" {
         component?: React.ReactNode | (() => React.ReactNode);
         primary?: boolean;
         collapsed?: boolean | "always" | "never" | "auto";
+        displayType?: TActionItemDisplayType;
       }
+      type TActionItemDisplayType = "button" | "button-compact" | "menu-item";
+
       interface TContextCenterInfoItem {
         label: React.ReactNode;
         children: React.ReactNode;
@@ -614,6 +617,7 @@ declare module "uu5g05-elements" {
         disabled?: boolean;
         itemList?: (UU5Elements.TActionListItem | { divider: true })[];
         onClick?: () => void;
+        displayType?: TActionItemDisplayType;
       }
 
       interface TMenuItem {
