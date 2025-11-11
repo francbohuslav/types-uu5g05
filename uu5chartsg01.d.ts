@@ -1,6 +1,6 @@
 declare module "uu5chartsg01" {
   const XyChart: UU5.TComponent<UU5.TDefaultProps<UU5Charts.XyChart.Props>> & {
-    Chart: React.FC<{}>;
+    Chart:UU5.TComponent<UU5.TDefaultProps<{}>>
   };
 
   const Legend: UU5.TComponent<
