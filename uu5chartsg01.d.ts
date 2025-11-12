@@ -4,10 +4,7 @@ declare module "uu5chartsg01" {
   };
 
   const Legend: UU5.TComponent<
-    UU5.TDefaultProps<{
-      title?: React.ReactNode;
-      layout?: "horizontal" | "vertical";
-    }>
+    UU5.TDefaultProps<UU5Charts.Legend.Props>
   >;
 
   function useLegend(): UU5Charts.Legend.UseLegendResult;
@@ -208,6 +205,11 @@ declare module "uu5chartsg01" {
       }
 
       namespace Legend {
+        interface Props {
+          title?: React.ReactNode;
+          layout?: "horizontal" | "vertical";
+        }
+
         interface UseLegendResult {
           data: Item[];
           onClick(event: { payload: object }): void;
