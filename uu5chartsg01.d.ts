@@ -1,11 +1,9 @@
 declare module "uu5chartsg01" {
   const XyChart: UU5.TComponent<UU5.TDefaultProps<UU5Charts.XyChart.Props>> & {
-    Chart:UU5.TComponent<UU5.TDefaultProps<{}>>
+    Chart: UU5.TComponent<UU5.TDefaultProps<{}>>;
   };
 
-  const Legend: UU5.TComponent<
-    UU5.TDefaultProps<UU5Charts.Legend.Props>
-  >;
+  const Legend: UU5.TComponent<UU5.TDefaultProps<UU5Charts.Legend.Props>>;
 
   function useLegend(): UU5Charts.Legend.UseLegendResult;
 
@@ -198,9 +196,12 @@ declare module "uu5chartsg01" {
           dotList?: UU5Charts.XyChart.Dot[];
           legend?: boolean | UU5Charts.XyChart.Legend;
           stackOffset?: "sign" | "none";
-          disableZoom?: boolean;
           barStackGap?: number;
           barGap?: number;
+          zoom?: [number, number];
+          onZoomChange?(event: UU5.TDataEvent<{ zoom: [number, number] }>): void;
+          zoomType?: "button" | "slider" | "none";
+          zoomSliderFormatter?(event: UU5.TFormDataEvent<number>): string;
         }
       }
 
