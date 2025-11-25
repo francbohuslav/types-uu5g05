@@ -79,7 +79,13 @@ declare module "uu5g05-elements" {
     width?: number;
     widthCollapsed?: number;
     spacing: "tight" | "normal" | "loose";
-    content: React.ReactNode | (() => React.ReactNode);
+    content:
+      | React.ReactNode
+      | ((params: {
+          open: boolean;
+          type: "elevated" | "flat" | "collapsible";
+          style: React.CSSProperties;
+        }) => React.ReactNode);
     collapsible?: boolean;
   }
   const Drawer: UU5.TComponent<UU5.TDefaultProps<DrawerProps>>;
@@ -241,30 +247,32 @@ declare module "uu5g05-elements" {
         colorScheme?: string;
         significance?: UU5Elements.TSignificance;
         tooltip?: UU5.TLsi | React.ReactNode;
+        bold?: boolean;
       }
     >
   >;
   const Header: UU5.TComponent<
-    UU5.TDefaultProps<{
-      icon?: any | string;
-      onIconClick?(...args: any): any;
-      title?: React.ReactNode;
-      size?: UU5.TSize;
-    }>
+    UU5.TDefaultProps<
+      UU5Elements.TIinfoItemProps & {
+        icon?: React.ReactNode;
+        onIconClick?(...args: any): any;
+      }
+    >
   >;
-  const Box: UU5.TComponent<
-    UU5.TDefaultProps<{
-      shape?: "ground" | "interactiveElement" | "interactiveItem" | "background";
-      colorScheme?: any;
-      significance?: UU5Elements.TSignificance;
-      aspectRatio?: any;
-      size?: "xs" | "s" | "m" | "l";
-      borderRadius?: any;
-      width?: any;
-      height?: any;
-      onClick?(...args: any): any;
-    }>
-  >;
+
+  interface BoxProps {
+    shape?: "ground" | "interactiveElement" | "interactiveItem" | "background";
+    colorScheme?: any;
+    significance?: UU5Elements.TSignificance;
+    aspectRatio?: any;
+    size?: "xs" | "s" | "m" | "l";
+    borderRadius?: any;
+    width?: any;
+    height?: any;
+    onClick?(...args: any): any;
+  }
+  const Box: UU5.TComponent<UU5.TDefaultProps<BoxProps>>;
+
   const Flag: UU5.TComponent<
     UU5.TDefaultProps<{
       src?: any;
@@ -305,11 +313,14 @@ declare module "uu5g05-elements" {
       collapsible?: boolean;
       initialCollapsed?: boolean;
       headerType?: "title" | "heading";
-      header?: React.ReactNode;
+      header?: React.ReactNode | ((param: { style: React.CSSProperties }) => React.ReactNode);
       headerSeparator?: boolean;
+      footer?: React.ReactNode | ((param: { style: React.CSSProperties }) => React.ReactNode);
+      footerSeparator?: boolean;
       level?: number;
       actionList: UU5Elements.TActionListItem[];
-    }>
+    }>,
+    React.ReactNode | ((param: { style: React.CSSProperties }) => JSX.Element)
   >;
 
   const Popover: UU5.TComponent<
@@ -443,7 +454,7 @@ declare module "uu5g05-elements" {
   >;
 
   const Tile: UU5.TComponent<
-    UU5.TDefaultProps<{
+    UU5.TDefaultProps<BoxProps & {
       actionList?: UU5Elements.TActionGroupItem[];
       actionCollapsedMenuProps?: any;
       displayActionList?: boolean;
@@ -455,8 +466,6 @@ declare module "uu5g05-elements" {
       headerHorizontalAlignment?: "start" | "center" | "end";
       footer?: React.ReactNode;
       footerOverlap?: boolean;
-      colorScheme?: string;
-      significance?: UU5Elements.TSignificance;
       footerSignificance?: Extract<UU5Elements.TSignificance, "common" | "highlighted">;
       footerColorScheme?: string;
       footerSeparator?: boolean;
@@ -511,6 +520,11 @@ declare module "uu5g05-elements" {
 
   namespace UuGds {
     function getValue(args: string[]): any;
+
+    namespace Shape {
+      function getValue(args: string[]): any;
+      function getStateStyles(state: any, cssReset?: boolean): any;
+    }
     namespace ColorPalette {
       function getValue(args: string[]): any;
     }

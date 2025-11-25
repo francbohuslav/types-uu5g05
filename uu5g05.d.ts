@@ -255,10 +255,10 @@ declare module "uu5g05" {
     namespace UU5 {
       type TProps = Record<string, any>;
 
-      type TBaseProps<Props extends TProps> = Props & {
+      type TBaseProps<Props extends TProps, TChildren = React.ReactNode> = Props & {
         className?: string;
         style?: React.CSSProperties;
-        children?: React.ReactNode;
+        children?: TChildren;
         testId?: string;
         nestingLevel?: TNestingLevel;
         elementRef?: React.MutableRefObject<any>;
@@ -269,7 +269,9 @@ declare module "uu5g05" {
       type TDefaultProps<Props extends TProps, Defaults extends {} = {}> = Partial<Props> &
         Defaults;
 
-      type TComponent<Props extends TProps> = React.FC<TBaseProps<Props>> & {
+      type TComponent<Props extends TProps, TChildren = React.ReactNode> = React.FC<
+        TBaseProps<Props, TChildren>
+      > & {
         logger: TLogger;
         nestingLevel: TNestingLevel[];
         uu5Tag: string;

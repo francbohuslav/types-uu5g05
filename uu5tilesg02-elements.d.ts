@@ -49,4 +49,27 @@ declare module "uu5tilesg02-elements" {
       }>
     >;
   };
+
+  const Grid: UU5.TComponent<
+    UU5.TDefaultProps<{
+      itemIdentifier?: string;
+    }>,
+    (props: UU5TilesElements.GridItem<any>) => React.ReactNode
+  >;
+
+  global {
+    namespace UU5TilesElements {
+      interface GridItem<ItemType> {
+        data: ItemType;
+        elementAttrs: Record<string, any>;
+        className: string;
+        colorScheme: string | undefined;
+        significance: UU5Elements.TSignificance | undefined;
+        selectable: "none";
+        selected?: boolean;
+        toggleSelected(): void;
+        isDragging?: boolean;
+      }
+    }
+  }
 }
