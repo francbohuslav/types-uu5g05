@@ -29,6 +29,8 @@ declare module "uu5g05-forms" {
   }
   const TextSelect: UU5Forms.TComponent<TextSelectProps, string> & {
     Input: UU5Forms.TComponent<any, string>;
+    Field: UU5.TComponent<any>;
+    Options: UU5.TComponent<{ height?: number | string }>;
   };
   const FormTextSelect: UU5Forms.TFormComponent<TextSelectProps, string>;
 

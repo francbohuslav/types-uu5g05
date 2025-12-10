@@ -218,7 +218,7 @@ declare module "uu5g05-elements" {
       midnightValue?: number;
     }>
   >;
-  const Dialog: UU5.TComponent<UU5.TDefaultProps<any>>;
+  const Dialog: UU5.TComponent<UU5.TDefaultProps<UU5Elements.TDialogProps>>;
   const Svg: UU5.TComponent<
     UU5.TDefaultProps<{
       code?: any;
@@ -454,23 +454,25 @@ declare module "uu5g05-elements" {
   >;
 
   const Tile: UU5.TComponent<
-    UU5.TDefaultProps<BoxProps & {
-      actionList?: UU5Elements.TActionGroupItem[];
-      actionCollapsedMenuProps?: any;
-      displayActionList?: boolean;
-      header?: React.ReactNode;
-      headerOverlap?: boolean;
-      headerSignificance?: Extract<UU5Elements.TSignificance, "common" | "highlighted">;
-      headerColorScheme?: string;
-      headerSeparator?: boolean;
-      headerHorizontalAlignment?: "start" | "center" | "end";
-      footer?: React.ReactNode;
-      footerOverlap?: boolean;
-      footerSignificance?: Extract<UU5Elements.TSignificance, "common" | "highlighted">;
-      footerColorScheme?: string;
-      footerSeparator?: boolean;
-      footerHorizontalAlignment?: "start" | "center" | "end";
-    }>
+    UU5.TDefaultProps<
+      BoxProps & {
+        actionList?: UU5Elements.TActionGroupItem[];
+        actionCollapsedMenuProps?: any;
+        displayActionList?: boolean;
+        header?: React.ReactNode;
+        headerOverlap?: boolean;
+        headerSignificance?: Extract<UU5Elements.TSignificance, "common" | "highlighted">;
+        headerColorScheme?: string;
+        headerSeparator?: boolean;
+        headerHorizontalAlignment?: "start" | "center" | "end";
+        footer?: React.ReactNode;
+        footerOverlap?: boolean;
+        footerSignificance?: Extract<UU5Elements.TSignificance, "common" | "highlighted">;
+        footerColorScheme?: string;
+        footerSeparator?: boolean;
+        footerHorizontalAlignment?: "start" | "center" | "end";
+      }
+    >
   >;
 
   const SpacingProvider: UU5.TComponent<{ type: "tight" | "normal" | "loose" }>;
@@ -673,8 +675,8 @@ declare module "uu5g05-elements" {
         icon?: UUGds.GdsIcon;
         iconText?: string;
         imageSrc?: string;
-        title?: string;
-        subtitle?: string;
+        title?: React.ReactNode;
+        subtitle?: React.ReactNode;
         size?: UU5.TSize;
         direction?: "vertical" | "horizontal" | "vertical-full" | "vertical-reverse";
         onClick?: () => void;
@@ -690,6 +692,17 @@ declare module "uu5g05-elements" {
         size?: UU5.TSize;
         disabled?: boolean;
         tooltip?: string | UU5.TLsi;
+      }>;
+
+      type TDialogProps = UU5.TBaseProps<{
+        open: boolean;
+        onClose?(...args: any): void;
+        actionList: ButtonProps[];
+        header?: React.ReactNode;
+        icon?: UUGds.GdsIcon;
+        info?: React.ReactNode;
+        width?: number | string | null;
+        actionDirection?: "vertical" | "horizontal";
       }>;
     }
     namespace UUGds {

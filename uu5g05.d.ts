@@ -16,6 +16,7 @@ declare module "uu5g05" {
   function useMemo<T>(method: () => T, dep?: any[]): T;
   function useMemoObject<T>(obj: T, equals?: (a: T, b: T) => boolean): T;
   function useEffect(effect: React.EffectCallback, deps?: any[]): void;
+  function useUpdateEffect(effect: React.EffectCallback, deps?: any[]): void;
   function useCallback<T extends Function>(callback: T, deps?: any[]): T;
   function useImperativeHandle<T>(ref: React.Ref<T>, init: () => T, deps?: any[]): void;
   function usePreviousValue<T>(currentValue: T, initialValue?: T): T;
