@@ -18,31 +18,11 @@ declare module "uu5g05-elements" {
 
   const ModalBus: UU5.TComponent<UU5.TDefaultProps<any>>;
 
-  interface ButtonProps {
-    onClick?(event: Event): void;
-    iconNotification?: boolean;
-    iconRight?: any;
-    type?: "button" | "submit" | "reset";
-    colorScheme?: string;
-    significance?: UU5Elements.TSignificance;
-    effect?: "ground" | "upper";
-    size?: UU5.TSize;
-    borderRadius?: any;
-    width?: any;
-    pressed?: boolean;
-    icon?: string | UUGds.GdsIcon | React.ReactNode;
-    iconAnimation?: "rotate" | "none";
-    collapsedIcon?: string | UUGds.GdsIcon | React.ReactNode;
-    disabled?: boolean;
-    tooltip?: React.ReactNode | UU5.TLsi;
-    collapsedChildren?: React.ReactNode;
-  }
-
-  const Button: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
-  const TouchButton: UU5.TComponent<UU5.TDefaultProps<ButtonProps>>;
+  const Button: UU5.TComponent<UU5.TDefaultProps<UU5Elements.TButtonProps>>;
+  const TouchButton: UU5.TComponent<UU5.TDefaultProps<UU5Elements.TButtonProps>>;
 
   interface ButtonGroupProps {
-    itemList: ButtonProps[];
+    itemList: UU5Elements.TButtonProps[];
     size?: UU5.TSize;
     colorScheme?: string;
     significance?: UU5Elements.TSignificance;
@@ -594,7 +574,27 @@ declare module "uu5g05-elements" {
 
   global {
     namespace UU5Elements {
-      interface TActionListItem extends UU5.TBaseProps<ButtonProps> {
+      interface TButtonProps {
+        onClick?(event: Event): void;
+        iconNotification?: boolean;
+        iconRight?: any;
+        type?: "button" | "submit" | "reset";
+        colorScheme?: string;
+        significance?: UU5Elements.TSignificance;
+        effect?: "ground" | "upper";
+        size?: UU5.TSize;
+        borderRadius?: any;
+        width?: any;
+        pressed?: boolean;
+        icon?: string | UUGds.GdsIcon | React.ReactNode;
+        iconAnimation?: "rotate" | "none";
+        collapsedIcon?: string | UUGds.GdsIcon | React.ReactNode;
+        disabled?: boolean;
+        tooltip?: React.ReactNode | UU5.TLsi;
+        collapsedChildren?: React.ReactNode;
+      }
+
+      interface TActionListItem extends UU5.TBaseProps<TButtonProps> {
         component?: React.ReactNode | (() => React.ReactNode);
         primary?: boolean;
         collapsed?: boolean | "always" | "never" | "auto";
@@ -697,7 +697,7 @@ declare module "uu5g05-elements" {
       type TDialogProps = UU5.TBaseProps<{
         open: boolean;
         onClose?(...args: any): void;
-        actionList: ButtonProps[];
+        actionList: UU5Elements.TActionListItem[];
         header?: React.ReactNode;
         icon?: UUGds.GdsIcon;
         info?: React.ReactNode;
