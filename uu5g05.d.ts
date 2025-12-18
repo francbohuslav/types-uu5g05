@@ -95,6 +95,12 @@ declare module "uu5g05" {
     }>
   >;
 
+  const LanguageListProvider: React.FC<{
+    languageList: string[];
+    onChange?: (params: { languageList: string[] }) => void;
+    children?: React.ReactNode | ((params: { languageList: string[] }) => React.ReactNode);
+  }>;
+
   const UserPreferencesProvider: any;
 
   const Lsi: UU5.TComponent<
@@ -250,6 +256,8 @@ declare module "uu5g05" {
       function convertObjectToString(propValue: any): string;
       function getSizeValue(sizeOf: any, size: any, sizeList?: UU5.TSize[]): string;
     }
+
+    class Uu5String extends UU5.Uu5String {}
   }
 
   global {
@@ -497,6 +505,15 @@ declare module "uu5g05" {
       type TLsiImport<TLsiStructure> = ((lang: string) => Promise<TLsiStructure>) & {
         libraryCode: string | undefined;
       };
+
+      class Uu5String {
+        constructor(string: string | any[], options?: any);
+        toChildren(params?: { templateDataMap?: Record<string, any> }): React.ReactNode;
+        toPlainText(params?: { templateDataMap?: Record<string, any> }): string;
+        toString(params?: { templateDataMap?: Record<string, any> }): string;
+        toObject(params?: { templateDataMap?: Record<string, any> }): object;
+        clone(params?: { templateDataMap?: Record<string, any> }): Uu5String;
+      }
     }
   }
 }
