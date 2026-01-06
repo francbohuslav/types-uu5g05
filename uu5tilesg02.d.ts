@@ -85,7 +85,7 @@ declare module "uu5tilesg02" {
       interface TFilterDefinition {
         /** unique column identifier */
         key: string;
-        label: UU5.TLsi | string;
+        label: UU5.TLsi | React.ReactNode;
         inputType?: string | React.ReactNode | (() => React.ReactNode);
         required?: boolean;
         readOnly?: boolean;
