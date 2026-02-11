@@ -57,6 +57,9 @@ declare module "uu5tilesg02" {
         filterDefinitionList?: TFilterDefinition[];
         onFilterChange?(event: TDataEvent<ChangeSorterAndFilterData>): any;
         onSerieChange?(event: TDataEvent<{ serieList: TSerieDefinition[] }>): any;
+        allowEmptyRequiredFilters?: boolean;
+        resetFilterList?: TFilterItem[];
+        resetSorterList?: TSorterItem[];
       }
 
       interface TPresetProvider$Props {
