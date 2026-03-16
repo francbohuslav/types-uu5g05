@@ -576,6 +576,8 @@ declare module "uu5g05-elements" {
     namespace UU5Elements {
       interface TButtonProps {
         onClick?(event: Event): void;
+        href?: string;
+        target?: string;
         iconNotification?: boolean;
         iconRight?: any;
         type?: "button" | "submit" | "reset";
@@ -586,12 +588,15 @@ declare module "uu5g05-elements" {
         borderRadius?: any;
         width?: any;
         pressed?: boolean;
+        focused?: boolean;
         icon?: string | UUGds.GdsIcon | React.ReactNode;
         iconAnimation?: "rotate" | "none";
         collapsedIcon?: string | UUGds.GdsIcon | React.ReactNode;
         disabled?: boolean;
         tooltip?: React.ReactNode | UU5.TLsi;
+        children?: React.ReactNode;
         collapsedChildren?: React.ReactNode;
+        itemList?: TButtonProps[];
       }
 
       interface TActionListItem extends UU5.TBaseProps<TButtonProps> {
@@ -653,7 +658,7 @@ declare module "uu5g05-elements" {
         testId?: string;
         significance?: TSignificance;
         colorScheme?: string;
-        tooltip?: string;
+        tooltip?: string | UU5.TLsi$String;
       }
 
       interface TMenuListItem extends TMenuItem {

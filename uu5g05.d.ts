@@ -46,7 +46,7 @@ declare module "uu5g05" {
   function useContentSizeValue<T>(map: Partial<Record<UU5.TSize, T>>): T;
   function useElementSize<T>(): UU5.TElementSize<T>;
   function useSession(): UU5.TSession;
-  function useTimeZone(): any;
+  function useTimeZone(): [string, (timeZone: string) => void];
   function useBackground(): string;
   function useUserPreferences(): [
     UU5.TUserPreferences,
@@ -91,7 +91,7 @@ declare module "uu5g05" {
   const TimeZoneProvider: React.FC<
     React.PropsWithChildren<{
       timeZone?: string;
-      onChange?: (timeZone: string) => void;
+      onChange?: (event: { timeZone: string }) => void;
     }>
   >;
 
@@ -292,7 +292,7 @@ declare module "uu5g05" {
         propTypes?: Record<keyof Props, TPropTypeFunction>;
         defaultProps?: TDefaultProps<Props, Defaults>;
       }
-      interface TComponentDefinition<Props extends TProps, Defaults extends {}>
+      interface TComponentDefinition<Props extends TProps, Defaults extends {}> 
         extends TComponentDefinitionBase<Props, Defaults> {
         render: (props: UU5.TBaseProps<Props & Defaults>) => React.ReactNode;
       }
@@ -508,7 +508,7 @@ declare module "uu5g05" {
 
       class Uu5String {
         constructor(string: string | any[], options?: any);
-        toChildren(params?: { templateDataMap?: Record<string, any> }): React.ReactNode;
+        toChildren(params?: { templateDataMap?: Record<string, any> }): React.ReactNode[] | null;
         toPlainText(params?: { templateDataMap?: Record<string, any> }): string;
         toString(params?: { templateDataMap?: Record<string, any> }): string;
         toObject(params?: { templateDataMap?: Record<string, any> }): object;
