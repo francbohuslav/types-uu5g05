@@ -24,6 +24,8 @@ declare module "uu5chartsg01" {
           | "stepBefore"
           | "stepAfter";
 
+        type ColorTheme = "default" | "contrast";
+
         type Serie = {
           id?: string;
           valueKey: string;
@@ -77,6 +79,7 @@ declare module "uu5chartsg01" {
                 type?: LineType;
                 width?: number;
                 strokeType?: "solid" | "dashed" | "dotted";
+                connectNulls?: boolean;
               };
           area?:
             | boolean
@@ -113,6 +116,7 @@ declare module "uu5chartsg01" {
           id?: string;
           hidden?: boolean;
           allowDuplicatedCategory?: boolean;
+          minTickGap?: number;
         }
 
         interface ValueAxis {
@@ -125,6 +129,7 @@ declare module "uu5chartsg01" {
           domain?: string[] | number[] | Array<(...args: any[]) => any>;
           formatValue?: (...args: any[]) => any;
           tick?: { fontSize?: string | number } | ((...args: any[]) => any);
+          minTickGap?: number;
         }
 
         interface TooltipProps {
@@ -159,14 +164,14 @@ declare module "uu5chartsg01" {
           y?: number | string;
           width?: number;
           type?: "solid" | "dashed" | "dotted";
-          fontSize?: string;
+          fontSize?: string | number;
         }
 
-        interface Dot {
+        interface Dot extends DecorationBase {
           x: number | string;
           y: number | string;
           radius?: number;
-          fontSize?: string;
+          fontSize?: string | number;
         }
 
         interface Legend {
@@ -191,6 +196,7 @@ declare module "uu5chartsg01" {
             | ((props: UU5Charts.XyChart.TooltipProps) => React.ReactNode);
           numberGroupingSeparator?: string;
           numberDecimalSeparator?: string;
+          colorTheme?: UU5Charts.XyChart.ColorTheme;
           lineList?: UU5Charts.XyChart.Line[];
           areaList?: UU5Charts.XyChart.Area[];
           dotList?: UU5Charts.XyChart.Dot[];
@@ -202,6 +208,7 @@ declare module "uu5chartsg01" {
           onZoomChange?(event: UU5.TDataEvent<{ zoom: [number, number] }>): void;
           zoomType?: "button" | "slider" | "none";
           zoomSliderFormatter?(event: UU5.TFormDataEvent<number>): string;
+          disableAnimation?: boolean;
         }
       }
 
