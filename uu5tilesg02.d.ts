@@ -13,6 +13,8 @@ declare module "uu5tilesg02" {
     ) => (UU5Tiles.TPresetDefinition | undefined)[];
   };
 
+  const ViewProvider: UU5.TComponent<UU5Tiles.TViewProviderProps>;
+
   function usePreset(): UU5Tiles.TUsePreset;
   function useController(): UU5Tiles.TUseController;
   function _usePresetControls(): {
@@ -31,13 +33,22 @@ declare module "uu5tilesg02" {
         maxWidth?: string | number;
         header?:
           | React.ReactNode
-          | ((cellProps: any, indexes: { rowIndex: number; columnIndex: number }) => React.ReactNode);
+          | ((
+              cellProps: any,
+              indexes: { rowIndex: number; columnIndex: number }
+            ) => React.ReactNode);
         headerComponent?:
           | React.ReactNode
-          | ((cellProps: any, indexes: { rowIndex: number; columnIndex: number }) => React.ReactNode);
+          | ((
+              cellProps: any,
+              indexes: { rowIndex: number; columnIndex: number }
+            ) => React.ReactNode);
         cell?:
           | React.ReactNode
-          | ((cellProps: any, indexes: { rowIndex: number; columnIndex: number }) => React.ReactNode);
+          | ((
+              cellProps: any,
+              indexes: { rowIndex: number; columnIndex: number }
+            ) => React.ReactNode);
         cellComponent?: (
           cellProps: any,
           indexes: { rowIndex: number; columnIndex: number }
@@ -68,6 +79,16 @@ declare module "uu5tilesg02" {
         onChange?(event: TDataEvent<{ value: string }>): void;
         onPresetListChange?(event: TDataEvent<{ presetList: UU5Tiles.TPresetDefinition[] }>): void;
       }
+
+      type TViewProviderProps = UU5.TDefaultProps<{
+        viewList?: Array<{
+          value: string;
+          label?: UU5.TLsi | React.ReactNode;
+          icon?: UUGds.GdsIcon;
+        }>;
+        value?: string;
+        onChange?(event: TDataEvent<{ value: string }>): void;
+      }>;
 
       interface TSorterDefinition {
         key: string;
@@ -109,12 +130,13 @@ declare module "uu5tilesg02" {
 
       interface TPresetDefinition {
         value: string;
-        label: string;
+        label: UU5.TLsi | React.ReactNode;
         editable: boolean;
         visible: boolean;
         filterList: TFilterItem[];
         sorterList: TSorterItem[];
         serieList: TSerieDefinition[];
+        view?: string;
       }
 
       interface TFilterItem {

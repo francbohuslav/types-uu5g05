@@ -1,20 +1,5 @@
 declare module "uu5g05-elements" {
-  const Modal: UU5.TComponent<
-    UU5.TDefaultProps<{
-      initialLeftOpen?: boolean;
-      leftWidth?: number;
-      leftType?: any;
-      left?: any;
-      header?: any;
-      open: boolean;
-      onClose?: any;
-      closeOnButtonClick?: boolean;
-      closeOnOverlayClick?: boolean;
-      footer?: any;
-      width?: number | string;
-      actionList?: UU5Elements.TActionListItem[];
-    }>
-  >;
+  const Modal: UU5.TComponent<UU5Elements.TModalProps>;
 
   const ModalBus: UU5.TComponent<UU5.TDefaultProps<any>>;
 
@@ -470,7 +455,7 @@ declare module "uu5g05-elements" {
   };
 
   function withTooltip<P extends UU5.TProps>(
-    component: UU5.TComponent<P>
+    component: UU5.TComponent<P>,
   ): UU5.TComponent<P & { tooltip: UU5.TLsi | string }>;
 
   type Text$Props =
@@ -600,7 +585,7 @@ declare module "uu5g05-elements" {
       }
 
       interface TActionListItem extends UU5.TBaseProps<TButtonProps> {
-        component?: React.ReactNode | (() => React.ReactNode);
+        component?: React.ReactNode | ((props: any) => React.ReactNode);
         primary?: boolean;
         collapsed?: boolean | "always" | "never" | "auto";
         displayType?: TActionItemDisplayType;
@@ -709,7 +694,23 @@ declare module "uu5g05-elements" {
         width?: number | string | null;
         actionDirection?: "vertical" | "horizontal";
       }>;
+
+      type TModalProps = UU5.TBaseProps<{
+        initialLeftOpen?: boolean;
+        leftWidth?: number;
+        leftType?: any;
+        left?: any;
+        header?: any;
+        open: boolean;
+        onClose?: any;
+        closeOnButtonClick?: boolean;
+        closeOnOverlayClick?: boolean;
+        footer?: any;
+        width?: number | string;
+        actionList?: UU5Elements.TActionListItem[];
+      }>;
     }
+
     namespace UUGds {
       // Definition https://cdn.plus4u.net/uu-gds-svgg01/1.0.0/assets/stencil-map.json
       // Showcase https://uuapp.plus4u.net/uu-bookkit-maing01/2289b0b5308d43f89a7f34fefc5cefcb/book/page?code=47270913

@@ -48,6 +48,14 @@ declare module "uu5g05" {
   function useSession(): UU5.TSession;
   function useTimeZone(): [string, (timeZone: string) => void];
   function useBackground(): string;
+  function useAppBackground(): [
+    string,
+    (params: { background?: "light" | "dark"; backgroundColor?: string }) => void
+  ] & {
+    background: string;
+    backgroundColor: string;
+    setBackground: (params: { background?: "light" | "dark"; backgroundColor?: string }) => void;
+  };
   function useUserPreferences(): [
     UU5.TUserPreferences,
     (newPreferences: UU5.TUserPreferences) => void
@@ -85,6 +93,12 @@ declare module "uu5g05" {
   const BackgroundProvider: React.FC<
     React.PropsWithChildren<{
       background: "light" | "soft" | "full" | "dark";
+    }>
+  >;
+
+  const AppBackgroundProvider: React.FC<
+    React.PropsWithChildren<{
+      background: "light" | "dark";
     }>
   >;
 
@@ -292,7 +306,7 @@ declare module "uu5g05" {
         propTypes?: Record<keyof Props, TPropTypeFunction>;
         defaultProps?: TDefaultProps<Props, Defaults>;
       }
-      interface TComponentDefinition<Props extends TProps, Defaults extends {}> 
+      interface TComponentDefinition<Props extends TProps, Defaults extends {}>
         extends TComponentDefinitionBase<Props, Defaults> {
         render: (props: UU5.TBaseProps<Props & Defaults>) => React.ReactNode;
       }
